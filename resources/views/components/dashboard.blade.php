@@ -68,7 +68,7 @@
     </style>
 </head>
 
-<body class="font-family-karla flex relative">
+<body class="font-family-karla flex">
 
     <aside class="bg-sidebar relative h-screen w-64 hidden sm:block">
         <div class="p-6 bg-[#F48857]">
@@ -239,7 +239,8 @@
         </header>
 
         {{ $slot }}
-        <footer class="absolute bottom-0 flex justify-between items-center w-full bg-[#F0F0F0] text-right p-4">
+        {{-- <footer
+            class="absolute bottom-0 flex justify-between items-center w-screen max-w-screen bg-[#F0F0F0] text-right p-4">
             <p>SharePadi is created by BLOOM DIGITAL MEDIA LTD.  2024. All Rights Reserved</p>
             <div>
                 <a href="https://instagram.com">ig</a>
@@ -247,7 +248,7 @@
                 <a href=""></a>
                 <a href=""></a>
             </div>
-        </footer>
+        </footer> --}}
     </div>
 
     <!-- AlpineJS -->

@@ -6,9 +6,7 @@ use App\Models\Transaction;
 use App\Models\Wallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Validator;
 
 class WalletController extends Controller
 {
@@ -102,23 +100,12 @@ class WalletController extends Controller
 
         $user_id = $transaction->user_id;
 
-        $wallet = Wallet::where('user_id', $user_id)->first();
-        if ($wallet) {
-            DB::transaction(function () use ($wallet, $transaction) {
-                // Use a transaction to ensure atomic updates
-                $wallet->update([
-                    'balance' => $wallet->balance + $transaction->amount,
-                    'credit' => $wallet->credit + $transaction->amount
-                ]);
+        Wallet::create(['user_id' => $user_id, 'amount' => $transaction->amount, 'type' => Wallet::CREDIT]);
 
-                $transaction->update([
-                    'status' => Transaction::PAYMENT_SUCCESSFUL
-                ]);
-            });
-        } else {
-            // Handle the case where the wallet is not found
-            return redirect('/user/wallet')->with('error', 'Wallet not found');
-        }
+        $transaction->update([
+            'status' => Transaction::PAYMENT_SUCCESSFUL
+        ]);
+
 
         return redirect('/user/wallet')->with('success', 'Wallet funded successfully');
     }

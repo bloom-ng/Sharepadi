@@ -45,7 +45,11 @@
 
                 <button class="rounded-full px-6 py-2 bg-[#F48857] text-white lg:w-[160px]" type="submit">Pay</button>
             </form>
-            <hr class="border-[#F48857] lg:w-[70%] justify-self-end">
+
+            <div class="flex justify-center lg:justify-end w-full my-8">
+                <hr class="border-[#F48857] w-[90%]">
+            </div>
+
             <table class="w-full self-center mt-12">
                 <thead>
                     <tr class="montserrat-bold font-semibold text-[15px]">

@@ -12,12 +12,14 @@ class Wallet extends Model
 
     protected $fillable = [
         'user_id',
-        'balance',
-        'credit',
-        'debit',
+        'amount',
+        'type',
     ];
 
-    public function user(): BelongsTo
+    const CREDIT = 'credit';
+    const DEBIT = 'debit';
+
+    public function users(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -49,8 +50,16 @@ class User extends Authenticatable
         ];
     }
 
-    public function user(): HasOne
+    public function wallets(): HasMany
     {
-        return $this->hasOne(Wallet::class);
+        return $this->hasMany(Wallet::class);
+    }
+
+    public function walletBalance()
+    {
+        $credit = $this->wallets()->where('type', 'credit')->sum('amount');
+        $debit = $this->wallets()->where('type', 'debit')->sum('amount');
+
+        return $credit - $debit;
     }
 }

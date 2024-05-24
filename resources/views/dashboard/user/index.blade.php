@@ -21,7 +21,7 @@
                         </svg>
                     </div>
                     <h3 class="font-semibold montserrat-bold text-[20px]">Active Campaigns</h3>
-                    <h2 class="font-semibold montserrat-bold text-[20px]">1</h2>
+                    <h2 class="font-semibold montserrat-bold text-[20px]">{{ $campaigns }}</h2>
                 </div>
 
                 <div class="flex-col flex rounded-lg px-6 py-4 max-w-[400px] w-full border border-[#6683A5] gap-4">
@@ -40,7 +40,7 @@
                         </svg>
                     </div>
                     <h3 class="font-semibold montserrat-bold text-[20px]">Account Balance</h3>
-                    <h2 class="font-semibold montserrat-bold text-[20px]">₦1,000,000.00</h2>
+                    <h2 class="font-semibold montserrat-bold text-[20px]">₦{{ $balance }}</h2>
                 </div>
 
                 <div class="flex-col flex rounded-lg px-6 py-4 max-w-[400px] w-full border border-[#6683A5] gap-4">
@@ -59,7 +59,7 @@
                         </svg>
                     </div>
                     <h3 class="font-semibold montserrat-bold text-[20px]">Total Orders</h3>
-                    <h2 class="font-semibold montserrat-bold text-[20px]">4</h2>
+                    <h2 class="font-semibold montserrat-bold text-[20px]">{{ $orders }}</h2>
                 </div>
             </div>
         </main>

@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\Wallet;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -49,13 +47,6 @@ class AuthController extends Controller
             'country' => $request->country,
             'whatsapp_number' => $request->whatsapp_number,
             'where_did_you_hear' => $request->where_did_you_hear,
-        ]);
-
-        Wallet::create([
-            'user_id' => $user->id,
-            'balance' => 0.00,
-            'credit' => 0.00,
-            'debit' => 0.00,
         ]);
 
         // Redirect to a success page or the login page
