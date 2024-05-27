@@ -22,6 +22,8 @@ class AuthController extends Controller
             $request->session()->regenerate();
 
             return redirect('/user/dashboard');
+        } else {
+            return redirect()->route('login')->with('error', 'Invalid credentials. Please try again.');
         }
     }
 

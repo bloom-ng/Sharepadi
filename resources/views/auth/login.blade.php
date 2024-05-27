@@ -45,6 +45,22 @@
             }).showToast();
         </script>
     @endif
+    @if (session('error'))
+        <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+        <script>
+            Toastify({
+                text: "{{ session('error') }}",
+                duration: 3000,
+                close: true,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "red",
+                stopOnFocus: true,
+                ariaLive: "polite",
+                onClick: function() {}
+            }).showToast();
+        </script>
+    @endif
     <div class="hidden md:block">
         <div class="bg-white text-lg text-black flex flex-row justify-between gap-12 py-6 px-20">
             <div>

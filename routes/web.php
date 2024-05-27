@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TutorialController;
 use App\Http\Controllers\WalletController;
@@ -30,6 +31,8 @@ Route::post("/register", [AuthController::class, 'register'])->name("register");
 Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::get('/tutorials', [TutorialController::class, 'index']);
+    Route::get('campaigns', [CampaignController::class, 'index']);
+    Route::post('campaigns', [CampaignController::class, 'store']);
     Route::get('/wallet', [WalletController::class, 'index']);
     Route::post('/fund-wallet', [WalletController::class, 'fundWallet']);
     Route::get('/fund-confirm', [WalletController::class, 'confirmFunding']);
