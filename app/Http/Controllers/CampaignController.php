@@ -92,15 +92,15 @@ class CampaignController extends Controller
         }
 
         // Handle the file upload
-        if ($request->hasFile('task_image')) {
-            try {
-                $file = $request->file('task_image');
-                $filePath = $file->store('/images/campaign_file', 'public');
-                $validatedData['task_image'] = $filePath; // Save the file path to the validated data
-            } catch (\Exception $e) {
-                return redirect('/user/campaigns')->with('error', 'File upload failed: ' . $e->getMessage());
-            }
-        }
+        // if ($request->hasFile('task_image')) {
+        //     try {
+        //         $file = $request->file('task_image');
+        //         $filePath = $file->store('/images/campaign_file', 'public');
+        //         $validatedData['task_image'] = $filePath; // Save the file path to the validated data
+        //     } catch (\Exception $e) {
+        //         return redirect('/user/campaigns')->with('error', 'File upload failed: ' . $e->getMessage());
+        //     }
+        // }
 
         // Extract static campaign data from validated data
         $campaignData = [

@@ -195,7 +195,8 @@
 
             {{-- TAB 2 START --}}
             <div id="tabContent2" class="hidden">
-                <form id="formWhatsAppStatusPost" action="/user/campaigns" method="POST">
+                <form id="formWhatsAppStatusPost" action="/user/campaigns" method="POST"
+                    enctype="multipart/form-data">
                     @csrf
                     <input type="text" value="whatsapp_status_post" name="type" hidden>
                     <input type="text" name="title" value="WhatsApp Status Post" hidden>
@@ -224,8 +225,6 @@
                                 <input id="dropzone-file" type="file" class="hidden" name="task_file" />
                             </label>
                         </div>
-                        {{-- <input type="file" id="task_image" name="task_image"
-                            class="mt-1 block w-full border border-[#F48857] rounded-full shadow-sm py-3 px-3 focus:ring-[#F48857] focus:border-[#F48857] sm:text-sm montserrat-thin italic"> --}}
                         <p class="mb-4 text-sm text-gray-500 italic montserrat-thin font-light">If you have an image or
                             video you will like for our user to use for your task, please upload it here.</a>
                         </p>
@@ -247,7 +246,7 @@
                     </div>
 
                     <div class="my-8 flex flex-row items-center justify-end w-full">
-                        <button type="button" id="nextWhatsAppStatusPost"
+                        <button id="nextWhatsAppStatusPost" type="button"
                             class="w-fit bg-[#F48857] text-white py-2 px-6 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#F48857] font-semibold montserrat-medium">
                             Next
                         </button>
