@@ -100,9 +100,11 @@
 
             {{-- TAB 1 START --}}
             <div id="tabContent1" class="">
-                <form action="/user/campaigns" method="POST" enctype="multipart/form-data" class="mt-5">
+                <form id="formCustomTask" action="/user/campaigns" method="POST" enctype="multipart/form-data"
+                    class="mt-5">
                     @csrf
                     <input type="text" value="custom_task" name="type" hidden>
+                    <input type="number" name="cost" id="cost" hidden>
                     <div class="my-8">
                         <h2 class="text-xl font-bold mb-2">Task Title</h2>
                         <input type="text" id="title" placeholder="Input Title" name="title"
@@ -182,7 +184,7 @@
                     </div>
 
                     <div class="my-8 flex flex-row items-center justify-end w-full">
-                        <button type="submit"
+                        <button id="nextCustomTask" type="button"
                             class="w-fit bg-[#F48857] text-white py-2 px-6 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#F48857] font-semibold montserrat-medium">
                             Next
                         </button>
@@ -193,10 +195,11 @@
 
             {{-- TAB 2 START --}}
             <div id="tabContent2" class="hidden">
-                <form action="/user/campaigns" method="POST" enctype="multipart/form-data">
+                <form id="formWhatsAppStatusPost" action="/user/campaigns" method="POST">
                     @csrf
                     <input type="text" value="whatsapp_status_post" name="type" hidden>
                     <input type="text" name="title" value="WhatsApp Status Post" hidden>
+                    <input type="number" name="cost" id="cost" hidden>
 
                     <div class="my-8">
                         <h2 class="text-xl font-bold mb-2">Caption</h2>
@@ -244,7 +247,7 @@
                     </div>
 
                     <div class="my-8 flex flex-row items-center justify-end w-full">
-                        <button type="submit"
+                        <button type="button" id="nextWhatsAppStatusPost"
                             class="w-fit bg-[#F48857] text-white py-2 px-6 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#F48857] font-semibold montserrat-medium">
                             Next
                         </button>
@@ -255,10 +258,11 @@
 
             {{-- TAB 3 START --}}
             <div id="tabContent3" class="hidden">
-                <form action="/user/campaigns" method="POST">
+                <form id="formWhatsAppAddUp" action="/user/campaigns" method="POST">
                     @csrf
                     <input type="text" value="whatsapp_add_up" name="type" hidden>
                     <input type="text" name="title" value="WhatsApp Add Up" hidden>
+                    <input type="number" name="cost" id="cost" hidden>
 
                     <div class="my-8">
                         <h2 class="text-xl font-bold mb-2">Add Up Link</h2>
@@ -273,7 +277,7 @@
                     <div class="my-8">
                         <select id="gender" name="gender"
                             class="mt-1 block w-full border border-[#F48857] rounded-full shadow-sm py-3 px-3 focus:ring-[#F48857] focus:border-[#F48857] sm:text-sm montserrat-thin italic">
-                            <option>Choose Gender</option>
+                            <option disabled>Choose Gender</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
                             <option value="all">All Genders</option>
@@ -289,16 +293,14 @@
                     <div class="my-8">
                         <select id="states" name="states"
                             class="mt-1 block w-full border border-[#F48857] rounded-full shadow-sm py-3 px-3 focus:ring-[#F48857] focus:border-[#F48857] sm:text-sm montserrat-thin italic">
-                            <option>Select Target State(s)</option>
+                            <option disabled>Select Target State(s)</option>
                             @foreach ($states as $state)
                                 <option value="{{ $state }}">{{ $state }}</option>
                             @endforeach
                         </select>
                         <p class="mt-2 text-sm text-gray-500 montserrat-thin font-light italic">
-                            You can select the kind of gender whether male or female that you want to add you up. For
-                            example, if you are selling women fashion items, you can select the Female gender so your
-                            add up link will be shown to only females. Select “All Gender” if you want to target all
-                            genders.
+                            You can select the states of those you want to add you up. For example, if you are a seller
+                            in Abuja, you can select FCT, Nasarawa and Niger States.
                         </p>
                     </div>
 
@@ -316,7 +318,7 @@
                     </div>
 
                     <div class="my-8 flex flex-row items-center justify-end w-full">
-                        <button type="submit"
+                        <button id="nextWhatsAppAddUp" type="button"
                             class="w-fit bg-[#F48857] text-white py-2 px-6 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#F48857] font-semibold montserrat-medium">
                             Next
                         </button>
@@ -328,3 +330,220 @@
         </div>
     </div>
 </div>
+
+
+<!-- Pop-up for amount confirmation -->
+<div id="confirmationPopup" class="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center hidden">
+    <div
+        class="bg-white w-full px-8 py-6 rounded-[40px] max-w-[90%] md:max-w-[80%] lg:max-w-[60%] xl:max-w-[50%] 2xl:max-w-[40%]">
+        <div class="flex justify-between items-start">
+            <h2 class="text-[24px] md:text-[28px] font-semibold montserrat-bold">Pricing Calculator</h2>
+            <button id="backButton" class="text-black">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none"
+                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <rect width="40" height="40" fill="url(#pattern0_563_934)" />
+                    <defs>
+                        <pattern id="pattern0_563_934" patternContentUnits="objectBoundingBox" width="1"
+                            height="1">
+                            <use xlink:href="#image0_563_934" transform="scale(0.0104167)" />
+                        </pattern>
+                        <image id="image0_563_934" width="96" height="96"
+                            xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAACYUlEQVR4nO2dX2vUQBRHf3b9JmIrPsleS/zWRUXsk+sXahso/WMVIoEJSHFp0j+5c++cA/vWh8k5yWSbDTMSAAAAAAAAAAAAhOKV2uK1pI0q4IOkU0k3kn5J+irpnfLyXtJ3SX8k3UnaSTr2lH8pabj3uZDUKR9dObb7x3sl6aPHgE7/M5jp0yeL0JVj2ne8P9Ye0EGZdoYGInQPyB/KdDTeF1bl+oFBZYjQzZA/lPvf6pzMGFjkCN1M+ePns8cA3+y5KWWI0C2Qf1FcuLCVdLYgwifVj0k6j3RiZYpg0eRnimBR5WeIYNHlR45gWeRHjGDZ5EeKYFnlR4hg2eXXHMFakV9jBGtNfk0RrFX5NUSw1uV7RjDk+0Uw5PtFMOT7RTDk+0Uw5PtFMOT7RTDk+0Uw5PtFMOT7RTDk+0Uw5PtFMOT7vZHQL/zbtP/hel4JA/LrjtBz5vtF6JHvdyX0yPeL0CP/ebEFXzWXPLaAF5BPhArkD1wJ/vIHIvjLH4iwnI5HEX7YIx6s1fDKSwrsCU81ieAof4IIj8Se8Xk+ERzlTxBhJvaCv2QRwVH+BBH2sOZvuFu+ovrJnyBCwfPthW3rV0INr45sW41Qg/xmI9Qkv7kINcpvJkLN8tNHiCA/bYRI8tNFiCg/TYTI8sNHyCA/bIRM8sNFOGLZSk3LVh56BPiW7Mx/yusx46rxq7Ipy/Vmlb90Orpdez+BcaHq38nlL4lw57Ghw88G5M+djsaNHFbneM8S9q1t4HDjtYHDFGFXpqNxHvwi6a3yclhuuLflmHee8v9lUzZ1aIWDWjbxAQAAAAAAAAAAAM3jL0Cqa8IDDlXqAAAAAElFTkSuQmCC" />
+                    </defs>
+                </svg>
+            </button>
+        </div>
+        <p class="my-6 font-medium montserrat-medium">Summary</p>
+        <div class="my-8 bg-[#FFEEE7] rounded-2xl p-6">
+            <p class="text-[18px] md:text-[24px] font-semibold montserrat-semi-bold">
+                <span id="summaryText"></span>
+            </p>
+        </div>
+        <h2 class="font-semibold montserrat-thin">Estimated Cost: <span id="amountDisplay"
+                class="text-[#F48857]"></span></h2>
+        <div class="flex justify-between items-center mt-8 mb-4">
+            <button type="button" id="backButton"
+                class="flex items-center justify-center gap-4 font-semibold montserrat-thin">
+                <svg width="30" height="30" viewBox="0 0 40 40" fill="none"
+                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <rect width="40" height="40" fill="url(#pattern0_563_981)" />
+                    <defs>
+                        <pattern id="pattern0_563_981" patternContentUnits="objectBoundingBox" width="1"
+                            height="1">
+                            <use xlink:href="#image0_563_981" transform="scale(0.0104167)" />
+                        </pattern>
+                        <image id="image0_563_981" width="96" height="96"
+                            xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAABV0lEQVR4nO3cQU7CQBgF4HcQt8JeF3hmJN4Kw0ZRL4BpUjZEoSDwD/b7kknYdfJeO0NoaQIAAAAAAAAAAHCaaZLnJK/96D5PhHkdsyTrJJud8a6E64T/8UP42zG/whxG67E/yzd7xqp6kmMOf5NkWT3RMS47lqBGwl/bhGuWnU1f0uzMxx814RcSfiHhFxJ+IeEXEn4h4RcSfiHhFxJ+IeEXEv6N/KppZG8GX0le+vvig0x/uYdr5E8ZvCW5G1JA98SCsHORDAbdA+8eG1FALpLBpwJSenJ1++pB3WXiCshFMlgMKaB7Ys0mnItswvcZyNfQnHXdXxwT/tZD39rQte3p2ANwmBIaoIQGKKEBSmiAEhqghAYooQFKaIASGqCEBiihAUpogL8oNcCf9G5oOVpVT3TsJSyrJ/nfeVVBA7ysowGTndfVzE+5RwoAAAAAAAAAAJAb8A0AZEk4Ja91ygAAAABJRU5ErkJggg==" />
+                    </defs>
+                </svg>
+                Back
+            </button>
+            <button id="payButton"
+                class="bg-[#F48857] px-8 py-2 rounded-full text-white font-semibold montserrat-thin"
+                disabled>Pay</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const userBalance = <?php echo Auth::user()->walletBalance(); ?>;
+
+    document.getElementById('nextCustomTask').addEventListener('click', () => {
+        handleNextButton('custom_task', 'formCustomTask');
+    });
+
+    document.getElementById('nextWhatsAppStatusPost').addEventListener('click', () => {
+        handleNextButton('whatsapp_status_post', 'formWhatsAppStatusPost');
+    });
+
+    document.getElementById('nextWhatsAppAddUp').addEventListener('click', () => {
+        handleNextButton('whatsapp_add_up', 'formWhatsAppAddUp');
+    });
+
+    document.getElementById('backButton').addEventListener('click', () => {
+        document.getElementById('confirmationPopup').classList.add('hidden');
+    });
+
+    document.getElementById('payButton').addEventListener('click', () => {
+        const form = document.getElementById(activeFormId);
+        form.submit();
+        event.preventDefault();
+    });
+
+    let activeFormId;
+
+    function handleNextButton(taskType, formId) {
+        let apiEndpoint;
+
+        if (taskType === 'custom_task') {
+            apiEndpoint = '/user/settings/cost_per_action';
+            const quantity = document.querySelector(`#${formId} input[name="quantity"]`).value;
+            const instructions = document.querySelector(`#${formId} textarea[name="instructions"]`).value;
+
+            fetch(apiEndpoint)
+                .then(response => response.json())
+                .then(data => {
+                    const value = data.value;
+                    const amount = value * quantity;
+                    showSummary('Custom Task', quantity, instructions);
+                    showConfirmationPopup(amount, formId);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+
+        } else if (taskType === 'whatsapp_status_post') {
+            apiEndpoint = '/user/settings/reach_per_budget';
+            const budget = document.querySelector(`#${formId} input[name="budget"]`).value;
+            const file = document.querySelector(`#${formId} input[name="task_file"]`).files[0];
+            const caption = document.querySelector(`#${formId} textarea[name="caption"]`).value;
+
+            fetch(apiEndpoint)
+                .then(response => response.json())
+                .then(data => {
+                    const value = data.value;
+                    const estimatedReach = budget * value;
+                    showSummary('WhatsApp Status Post', estimatedReach, caption, file);
+                    showConfirmationPopup(budget, formId);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+
+        } else if (taskType === 'whatsapp_add_up') {
+            apiEndpoint = '/user/settings/cost_per_add_up';
+            const addUps = document.querySelector(`#${formId} input[name="quantity"]`).value;
+            const link = document.querySelector(`#${formId} input[name="add_up_link"]`).value;
+            const state = document.querySelector(`#${formId} select[name="states"]`).value;
+            const gender = document.querySelector(`#${formId} select[name="gender"]`).value;
+
+            fetch(apiEndpoint)
+                .then(response => response.json())
+                .then(data => {
+                    const value = data.value;
+                    const amount = value * addUps;
+                    showSummary('WhatsApp Add Up', addUps, link, '', state, gender);
+                    showConfirmationPopup(amount, formId);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        } else {
+            alert("GOT TO ELSE")
+        }
+    }
+
+    function showSummary(taskType, detail, instructions, file, state, gender) {
+        let summaryText = '';
+        if (taskType === 'Custom Task') {
+            summaryText = `
+            <div class="my-4">
+                <p class="montserrat-thin font-light text-[20px]">Campaign Name</p>
+                <h3 class="font-semibold montserrat-medium text-[24px]">${taskType}</h3>
+            </div>
+            <div class="my-4">
+                <p class="montserrat-thin font-light text-[20px]">Quantity</p>
+                <h3 class="font-semibold montserrat-medium text-[24px]">${detail} people will complete your task.</h3>
+            </div>
+            <div class="my-4">
+                <p class="montserrat-thin font-light text-[20px]">Instructions</p>
+                <h3 class="font-semibold montserrat-medium text-[24px]">${instructions}</h3>
+            </div>`;
+        } else if (taskType === 'WhatsApp Status Post') {
+            summaryText = `
+                <div class="my-4">
+                    <p class="montserrat-thin font-light text-[20px]">Campaign Name</p>
+                    <h3 class="font-semibold montserrat-medium text-[24px]">${taskType}</h3>
+                </div>
+                <div class="my-4">
+                    <p class="montserrat-thin font-light text-[20px]">Estimated number of views</p>
+                    <h3 class="font-semibold montserrat-medium text-[24px]">Your ADs will get approximately ${detail} Views.</h3>
+                </div>
+                ${file ? `
+                    <div class="my-4">
+                        <p class="montserrat-thin font-light text-[20px]">AD Image/Video</p>
+                        <a href="${file}" class="font-semibold montserrat-medium text-[24px] text-[#F48857]">View file</a>
+                    </div>` : ""
+                }
+                <div class="my-4">
+                    <p class="montserrat-thin font-light text-[20px]">Caption</p>
+                    <h3 class="font-semibold montserrat-medium text-[24px]">${instructions}</h3>
+                </div>
+            `;
+
+        } else if (taskType === 'WhatsApp Add Up') {
+            summaryText = `
+                <div class="my-4">
+                    <p class="montserrat-thin font-light text-[20px]">Campaign Name</p>
+                    <h3 class="font-semibold montserrat-medium text-[24px]">${taskType}</h3>
+                </div>
+                <div class="my-4">
+                    <p class="montserrat-thin font-light text-[20px]">Estimated number of add ups</p>
+                    <h3 class="font-semibold montserrat-medium text-[24px]">${detail} people will add you up</h3>
+                </div>
+                <div class="my-4">
+                    <p class="montserrat-thin font-light text-[20px]">Targeted State(s)</p>
+                    <h3 class="font-semibold montserrat-medium text-[24px]">${state}</h3>
+                </div>
+                <div class="my-4">
+                    <p class="montserrat-thin font-light text-[20px]">Targeted gender(s)</p>
+                    <h3 class="font-semibold montserrat-medium text-[24px]">${gender}</h3>
+                </div>
+                <div class="my-4">
+                    <p class="montserrat-thin font-light text-[20px]">Link</p>
+                    <a href="${instructions}" target="_blank" class="font-semibold montserrat-medium text-[24px] text-[#F48857]">${instructions}</a>
+                </div>
+            `;
+        }
+        document.getElementById('summaryText').innerHTML = summaryText;
+    }
+
+    function showConfirmationPopup(amount, formId) {
+        document.getElementById('amountDisplay').innerText = `₦${amount.toLocaleString()}`;
+        document.querySelector(`#${formId} input[name="cost"]`).value = amount;
+        activeFormId = formId;
+        document.getElementById('confirmationPopup').classList.remove('hidden');
+        const payButton = document.getElementById('payButton');
+        payButton.disabled = userBalance < amount;
+    }
+</script>

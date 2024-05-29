@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\TutorialController;
 use App\Http\Controllers\WalletController;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,8 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::get('/wallet', [WalletController::class, 'index']);
     Route::post('/fund-wallet', [WalletController::class, 'fundWallet']);
     Route::get('/fund-confirm', [WalletController::class, 'confirmFunding']);
+
+    Route::get('/settings/{key}', [SettingController::class, 'getOne']);
 
     Route::get("/logout", [AuthController::class, 'logout'])->name("logout");
 });

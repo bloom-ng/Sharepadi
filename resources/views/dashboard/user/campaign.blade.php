@@ -81,7 +81,7 @@
                     </button>
                 </div>
 
-                <div><button class="bg-[#FFEEE7] rounded-full px-8 py-2">Filter By</button></div>
+                <div><button type="button" class="bg-[#FFEEE7] rounded-full px-8 py-2">Filter By</button></div>
             </form>
 
             <div class="flex justify-center lg:justify-end w-full my-8">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Campaign;
 use App\Models\CampaignAction;
+use App\Models\Wallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -70,7 +71,8 @@ class CampaignController extends Controller
             'add_up_link' => 'string|sometimes',
             'gender' => 'string|sometimes',
             'quantity' => 'integer|sometimes',
-            'actions_number' => 'integer|sometimes'
+            'actions_number' => 'integer|sometimes',
+            'cost' => 'integer|required'
         ];
 
         // Find all dynamic action fields and add to rules
@@ -81,55 +83,71 @@ class CampaignController extends Controller
         }
 
         // Validate the request
-        $validated = $request->validate($rules);
+        $validatedData = $request->validate($rules);
+
+        // Check user's wallet balance
+        $balance = Auth::user()->walletBalance();
+        if ($balance < $validatedData['cost']) {
+            return redirect('/user/campaigns')->with('error', 'Insufficient Funds');
+        }
 
         // Handle the file upload
         if ($request->hasFile('task_image')) {
-            $file = $request->file('task_image');
-            $filePath = $file->store('/images/campaign_file', 'public');
-            $validated['task_image'] = $filePath; // Save the file path to the validated data
+            try {
+                $file = $request->file('task_image');
+                $filePath = $file->store('/images/campaign_file', 'public');
+                $validatedData['task_image'] = $filePath; // Save the file path to the validated data
+            } catch (\Exception $e) {
+                return redirect('/user/campaigns')->with('error', 'File upload failed: ' . $e->getMessage());
+            }
         }
 
         // Extract static campaign data from validated data
         $campaignData = [
             'user_id' => $request->user()->id,
-            'type' => $validated['type'],
-            'states' => $validated['states'] ?? null,
-            'caption' => $validated['caption'] ?? null,
-            'instructions' => $validated['instructions'] ?? null,
-            'task_file_url' => $validated['task_image'] ?? null,
-            'title' => $validated['title'],
-            'budget' => $validated['budget'] ?? null,
-            'add_up_link' => $validated['add_up_link'] ?? null,
-            'gender' => $validated['gender'] ?? null,
-            'quantity' => $validated['quantity'] ?? null,
-            'actions_number' => $validated['actions_number'] ?? null,
-            'status' => Campaign::CAMPAIGN_PENDING,
-            'cost' => 700000
+            'type' => $validatedData['type'],
+            'states' => $validatedData['states'] ?? null,
+            'caption' => $validatedData['caption'] ?? null,
+            'instructions' => $validatedData['instructions'] ?? null,
+            'task_file_url' => $validatedData['task_image'] ?? null,
+            'title' => $validatedData['title'],
+            'budget' => $validatedData['budget'] ?? null,
+            'add_up_link' => $validatedData['add_up_link'] ?? null,
+            'gender' => $validatedData['gender'] ?? null,
+            'quantity' => $validatedData['quantity'] ?? null,
+            'actions_number' => $validatedData['actions_number'] ?? null,
+            'status' => Campaign::CAMPAIGN_ACTIVE,
+            'cost' => $validatedData['cost']
         ];
 
         // Extract and save actions
         $actions = [];
-        foreach ($validated as $key => $value) {
+        foreach ($validatedData as $key => $value) {
             if (preg_match('/^action_\d+$/', $key)) {
                 $actions[] = ['name' => $key, 'value' => $value];
-                unset($validated[$key]); // Remove actions from validated data to prevent issues during Campaign creation
+                unset($validatedData[$key]); // Remove actions from validated data to prevent issues during Campaign creation
             }
         }
 
-        // Create a new campaign
-        // dd($request->all());
-        $campaign = Campaign::create($campaignData);
+        try {
+            // Debit user wallet
+            Wallet::create(['user_id' => Auth::user()->id, 'amount' => $validatedData['cost'], 'type' => Wallet::DEBIT]);
 
-        // Save actions to the CampaignAction model
-        foreach ($actions as $action) {
-            CampaignAction::create([
-                'campaign_id' => $campaign->id, // Use the ID of the created Campaign
-                'action' => $action['value']
-            ]);
+            // Create a new campaign
+            $campaign = Campaign::create($campaignData);
+
+            // Save actions to the CampaignAction model
+            foreach ($actions as $action) {
+                CampaignAction::create([
+                    'campaign_id' => $campaign->id, // Use the ID of the created Campaign
+                    'action' => $action['value']
+                ]);
+            }
+        } catch (\Exception $e) {
+            return redirect('/user/campaigns')->with('error', 'Campaign creation failed: ' . $e->getMessage());
         }
 
         // Redirect or perform additional logic
-        return redirect('/user/campaigns')->with('success', 'Campaign and actions saved successfully!');
+        return redirect('/user/campaigns')->with('success', 'Campaign created successfully!');
     }
 }
