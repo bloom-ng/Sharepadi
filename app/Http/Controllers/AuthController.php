@@ -29,7 +29,7 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users',
             'password' => 'required|string|min:8|confirmed',
@@ -38,8 +38,8 @@ class AuthController extends Controller
             'where_did_you_hear' => 'required|string',
         ]);
 
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
+        if (!$validated) {
+            return redirect()->back()->withErrors("Error occured try again.")->withInput();
         }
 
         $user = User::create([
