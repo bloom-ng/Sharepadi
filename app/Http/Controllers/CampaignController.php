@@ -84,7 +84,7 @@ class CampaignController extends Controller
 
         // Validate the request
         $validatedData = $request->validate($rules);
-        $filePath = "loolll";
+
         // Check user's wallet balance
         $balance = Auth::user()->walletBalance();
         if ($balance < $validatedData['cost']) {
@@ -109,7 +109,7 @@ class CampaignController extends Controller
             'states' => $validatedData['states'] ?? null,
             'caption' => $validatedData['caption'] ?? null,
             'instructions' => $validatedData['instructions'] ?? null,
-            'task_file_url' => $filePath,
+            'task_file_url' => $filePath ?? null,
             'title' => $validatedData['title'],
             'budget' => $validatedData['budget'] ?? null,
             'add_up_link' => $validatedData['add_up_link'] ?? null,
