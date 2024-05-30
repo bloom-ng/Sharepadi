@@ -175,7 +175,7 @@
         <!-- Desktop Header -->
         <header class="w-full items-center bg-[#F0F0F0] py-4 px-6 hidden sm:flex">
             <div class="w-1/2 text-black">
-                {{ Carbon::now()->format('l, F j, Y') }}
+                {{-- {{ Carbon::now()->format('l, F j, Y') }} --}}
             </div>
             <div x-data="{ isOpen: false }" class="relative w-1/2 flex justify-end">
                 <button @click="isOpen = !isOpen"
