@@ -59,7 +59,7 @@ class WalletController extends Controller
             'Content-Type' => 'application/json',
         ])->post($apiUrl, [
             "amount" => $request->amount,
-            "redirect_url" => "http://127.0.0.1:8000/user/fund-confirm",
+            "redirect_url" => "https://sharepadi.bloomdigitmedia.com/user/fund-confirm",
             "currency" => $currency,
             "reference" => $reference,
             "notification_url" => "https://example.com/webhook",
