@@ -23,7 +23,7 @@ class AuthController extends Controller
 
             return redirect('/user/dashboard');
         } else {
-            return redirect()->route('login')->with('error', 'Invalid credentials. Please try again.');
+            return redirect("/")->with('error', 'Invalid credentials. Please try again.');
         }
     }
 
@@ -39,7 +39,7 @@ class AuthController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
+            return redirect('/')->withErrors($validator)->withInput()->with('error', "An error occured try again");
         }
 
         $user = User::create([
@@ -52,7 +52,7 @@ class AuthController extends Controller
         ]);
 
         // Redirect to a success page or the login page
-        return redirect()->route('login')->with('success', 'Account registered successfully. Please log in.');
+        return redirect('/')->with('success', 'Account registered successfully. Please log in.');
     }
 
     public function logout(Request $request)

@@ -1,4 +1,4 @@
-<div id="dropdown8" class="absolute hidden mt-4 -ml-[470px] z-30">
+<div id="dropdown9" class="absolute hidden mt-4 -ml-[470px] z-30">
     <div class="flex flex-col items-center w-[700px] justify-start ">
         <div
             class="flex flex-col items-center rounded-[34px] justify-center h-full basis-full lg:basis-1/2 bg-[#F0F0F0] pt-12 pb-4 px-8 lg:px-28">
@@ -244,3 +244,32 @@
         </div>
     </div>
 </div>
+<script>
+    function togglePassword() {
+        const passwordInput = document.getElementById('password');
+        const eyeIcon = document.getElementById('eyeIcon');
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            // eyeIcon.innerHTML =
+            //     '<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" id="eye"><path d="M1664 960q-152-236-381-353 61 104 61 225 0 185-131.5 316.5T896 1280t-316.5-131.5T448 832q0-121 61-225-229 117-381 353 133 205 333.5 326.5T896 1408t434.5-121.5T1664 960zM944 576q0-20-14-34t-34-14q-125 0-214.5 89.5T592 832q0 20 14 34t34 14 34-14 14-34q0-86 61-147t147-61q20 0 34-14t14-34zm848 384q0 34-20 69-140 230-376.5 368.5T896 1536t-499.5-139T20 1029Q0 994 0 960t20-69q140-229 376.5-368T896 384t499.5 139T1772 891q20 35 20 69z"></path></svg>';
+        } else {
+            passwordInput.type = 'password';
+            // eyeIcon.innerHTML =
+            //     '<svg xmlns="http://www.w3.org/2000/svg" width="27" height="25" id="eye"><path d="M1664 960q-152-236-381-353 61 104 61 225 0 185-131.5 316.5T896 1280t-316.5-131.5T448 832q0-121 61-225-229 117-381 353 133 205 333.5 326.5T896 1408t434.5-121.5T1664 960zM944 576q0-20-14-34t-34-14q-125 0-214.5 89.5T592 832q0 20 14 34t34 14 34-14 14-34q0-86 61-147t147-61q20 0 34-14t14-34zm848 384q0 34-20 69-140 230-376.5 368.5T896 1536t-499.5-139T20 1029Q0 994 0 960t20-69q140-229 376.5-368T896 384t499.5 139T1772 891q20 35 20 69z"></path></svg>';
+        }
+    }
+
+    function toggleConfirmPassword() {
+        const passwordInput = document.getElementById('password_confirmation');
+        const eyeIcon = document.getElementById('confirm_eyeIcon');
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            // eyeIcon.innerHTML =
+            //     '<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" id="eye"><path d="M1664 960q-152-236-381-353 61 104 61 225 0 185-131.5 316.5T896 1280t-316.5-131.5T448 832q0-121 61-225-229 117-381 353 133 205 333.5 326.5T896 1408t434.5-121.5T1664 960zM944 576q0-20-14-34t-34-14q-125 0-214.5 89.5T592 832q0 20 14 34t34 14 34-14 14-34q0-86 61-147t147-61q20 0 34-14t14-34zm848 384q0 34-20 69-140 230-376.5 368.5T896 1536t-499.5-139T20 1029Q0 994 0 960t20-69q140-229 376.5-368T896 384t499.5 139T1772 891q20 35 20 69z"></path></svg>';
+        } else {
+            passwordInput.type = 'password';
+            // eyeIcon.innerHTML =
+            //     '<svg xmlns="http://www.w3.org/2000/svg" width="27" height="25" id="eye"><path d="M1664 960q-152-236-381-353 61 104 61 225 0 185-131.5 316.5T896 1280t-316.5-131.5T448 832q0-121 61-225-229 117-381 353 133 205 333.5 326.5T896 1408t434.5-121.5T1664 960zM944 576q0-20-14-34t-34-14q-125 0-214.5 89.5T592 832q0 20 14 34t34 14 34-14 14-34q0-86 61-147t147-61q20 0 34-14t14-34zm848 384q0 34-20 69-140 230-376.5 368.5T896 1536t-499.5-139T20 1029Q0 994 0 960t20-69q140-229 376.5-368T896 384t499.5 139T1772 891q20 35 20 69z"></path></svg>';
+        }
+    }
+</script>

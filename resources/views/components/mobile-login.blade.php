@@ -53,7 +53,7 @@
                     </span>
                     <input
                         type="email"
-                        id="email"
+                        id="mobile_email"
                         name="email"
                         placeholder="Email Address"
                         class="w-full p-2 border-none bg-transparent montserrat-light italic text-[14px] active:border-none"
@@ -100,7 +100,7 @@
                     </span>
                     <input
                         type="password"
-                        id="password"
+                        id="mobile_password"
                         name="password"
                         placeholder="Password"
                         class="w-full p-2 border-none bg-transparent montserrat-light italic text-[14px] active:border-none"

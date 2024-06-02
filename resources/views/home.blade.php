@@ -24,40 +24,11 @@
             href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
             rel="stylesheet"
         />
+
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     </head>
 
     <body>
-        @if (session('success'))
-        <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-        <script>
-            Toastify({
-                text: "{{ session('success') }}",
-                duration: 3000,
-                close: true,
-                gravity: "top",
-                position: "right",
-                backgroundColor: "green",
-                stopOnFocus: true,
-                ariaLive: "polite",
-                onClick: function () {},
-            }).showToast();
-        </script>
-        @endif @if (session('error'))
-        <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-        <script>
-            Toastify({
-                text: "{{ session('error') }}",
-                duration: 3000,
-                close: true,
-                gravity: "top",
-                position: "right",
-                backgroundColor: "red",
-                stopOnFocus: true,
-                ariaLive: "polite",
-                onClick: function () {},
-            }).showToast();
-        </script>
-        @endif
         <div class="hidden md:block">
             <div
                 class="bg-white text-lg text-black flex flex-row justify-between gap-12 py-6 px-20"
@@ -123,8 +94,8 @@
                                 </div>
                                 <x-mobile-login> </x-mobile-login>
                             </div>
-                            <div id="dropdownButton9" class="relative">
-                                <div onclick="toggleDropdown9()">
+                            <div id="dropdownButton10" class="relative">
+                                <div onclick="toggleDropdown10()">
                                     <a
                                         href="#"
                                         class="text-[#F0F0F0] bg-[#F48857] px-10 py-2 -mt-2 rounded-full"
@@ -175,6 +146,45 @@
                 </div>
             </div>
         </div>
+
+        @if (session('success'))
+        <!-- <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script> -->
+        <script>
+            Toastify({
+                text: "{{ session('success') }}",
+                duration: 3000,
+                close: true,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "green",
+                stopOnFocus: true,
+                ariaLive: "polite",
+                escapeMarkup: false,
+                onClick: function () {},
+            }).showToast();
+        </script>
+        @endif
+
+        @if (session('error'))
+        <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+        <script>
+            Toastify({
+                text: "{{ session('error') }}",
+                duration: 3000,
+                close: true,
+                newWindow: true,
+                gravity: "top",
+                position: "right",
+                stopOnFocus: true,
+                ariaLive: "polite",
+                style: {
+                    background: "red",
+                },
+                onClick: function () {},
+            }).showToast();
+        </script>
+        @endif
+
         <div class="text-center pt-6 md:pt-24 pb-28">
             <h1
                 class="text-[20px] leading-[20px] md:text-[50px] leading-[54px] montserrat-bold"
@@ -1090,6 +1100,7 @@
                 </div>
             </div>
         </div>
+        <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
         <script>
             function toggleDropdown() {
                 let dropdown = document.querySelector(
@@ -1138,11 +1149,11 @@
                 dropdown9.classList.toggle("hidden");
             }
 
-            function toggleDropdown8() {
-                let dropdown8 = document.querySelector(
-                    "#dropdownButton8 #dropdown8"
+            function toggleDropdown10() {
+                let dropdown10 = document.querySelector(
+                    "#dropdownButton10 #dropdown10"
                 );
-                dropdown8.classList.toggle("hidden");
+                dropdown10.classList.toggle("hidden");
             }
 
             // Add event listener to hide dropdown when clicking outside
@@ -1156,15 +1167,6 @@
                         "#dropdownButton7 #dropdown7"
                     );
                     dropdown7.classList.add("hidden");
-                }
-                if (
-                    !event.target.closest("#dropdown8") &&
-                    !event.target.closest("#dropdownButton8")
-                ) {
-                    let dropdown8 = document.querySelector(
-                        "#dropdownButton8 #dropdown8"
-                    );
-                    dropdown8.classList.add("hidden");
                 }
                 if (
                     !event.target.closest("#dropdown2") &&
@@ -1193,37 +1195,16 @@
                     );
                     dropdown9.classList.add("hidden");
                 }
+                if (
+                    !event.target.closest("#dropdown10") &&
+                    !event.target.closest("#dropdownButton10")
+                ) {
+                    let dropdown10 = document.querySelector(
+                        "#dropdownButton10 #dropdown10"
+                    );
+                    dropdown10.classList.add("hidden");
+                }
             });
-
-            function togglePassword() {
-                const passwordInput = document.getElementById("password");
-                const eyeIcon = document.getElementById("eyeIcon");
-                if (passwordInput.type === "password") {
-                    passwordInput.type = "text";
-                    // eyeIcon.innerHTML =
-                    //     '<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" id="eye"><path d="M1664 960q-152-236-381-353 61 104 61 225 0 185-131.5 316.5T896 1280t-316.5-131.5T448 832q0-121 61-225-229 117-381 353 133 205 333.5 326.5T896 1408t434.5-121.5T1664 960zM944 576q0-20-14-34t-34-14q-125 0-214.5 89.5T592 832q0 20 14 34t34 14 34-14 14-34q0-86 61-147t147-61q20 0 34-14t14-34zm848 384q0 34-20 69-140 230-376.5 368.5T896 1536t-499.5-139T20 1029Q0 994 0 960t20-69q140-229 376.5-368T896 384t499.5 139T1772 891q20 35 20 69z"></path></svg>';
-                } else {
-                    passwordInput.type = "password";
-                    // eyeIcon.innerHTML =
-                    //     '<svg xmlns="http://www.w3.org/2000/svg" width="27" height="25" id="eye"><path d="M1664 960q-152-236-381-353 61 104 61 225 0 185-131.5 316.5T896 1280t-316.5-131.5T448 832q0-121 61-225-229 117-381 353 133 205 333.5 326.5T896 1408t434.5-121.5T1664 960zM944 576q0-20-14-34t-34-14q-125 0-214.5 89.5T592 832q0 20 14 34t34 14 34-14 14-34q0-86 61-147t147-61q20 0 34-14t14-34zm848 384q0 34-20 69-140 230-376.5 368.5T896 1536t-499.5-139T20 1029Q0 994 0 960t20-69q140-229 376.5-368T896 384t499.5 139T1772 891q20 35 20 69z"></path></svg>';
-                }
-            }
-
-            function toggleConfirmPassword() {
-                const passwordInput = document.getElementById(
-                    "password_confirmation"
-                );
-                const eyeIcon = document.getElementById("confirm_eyeIcon");
-                if (passwordInput.type === "password") {
-                    passwordInput.type = "text";
-                    // eyeIcon.innerHTML =
-                    //     '<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" id="eye"><path d="M1664 960q-152-236-381-353 61 104 61 225 0 185-131.5 316.5T896 1280t-316.5-131.5T448 832q0-121 61-225-229 117-381 353 133 205 333.5 326.5T896 1408t434.5-121.5T1664 960zM944 576q0-20-14-34t-34-14q-125 0-214.5 89.5T592 832q0 20 14 34t34 14 34-14 14-34q0-86 61-147t147-61q20 0 34-14t14-34zm848 384q0 34-20 69-140 230-376.5 368.5T896 1536t-499.5-139T20 1029Q0 994 0 960t20-69q140-229 376.5-368T896 384t499.5 139T1772 891q20 35 20 69z"></path></svg>';
-                } else {
-                    passwordInput.type = "password";
-                    // eyeIcon.innerHTML =
-                    //     '<svg xmlns="http://www.w3.org/2000/svg" width="27" height="25" id="eye"><path d="M1664 960q-152-236-381-353 61 104 61 225 0 185-131.5 316.5T896 1280t-316.5-131.5T448 832q0-121 61-225-229 117-381 353 133 205 333.5 326.5T896 1408t434.5-121.5T1664 960zM944 576q0-20-14-34t-34-14q-125 0-214.5 89.5T592 832q0 20 14 34t34 14 34-14 14-34q0-86 61-147t147-61q20 0 34-14t14-34zm848 384q0 34-20 69-140 230-376.5 368.5T896 1536t-499.5-139T20 1029Q0 994 0 960t20-69q140-229 376.5-368T896 384t499.5 139T1772 891q20 35 20 69z"></path></svg>';
-                }
-            }
         </script>
     </body>
 </html>
