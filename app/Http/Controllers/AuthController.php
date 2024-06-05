@@ -65,4 +65,43 @@ class AuthController extends Controller
 
         return redirect('/');
     }
+
+    public function updateProfile(Request $request)
+    {
+        // Validate and update the user's profile information
+        $user = auth()->user();
+
+        if ($request->has('name')) {
+            $user->update(['name' => $request->input('name')]);
+        }
+
+        if ($request->has('email')) {
+            $user->update(['email' => $request->input('email')]);
+        }
+
+        return redirect()->back()->with('success', 'Profile updated successfully!');
+    }
+
+    public function updatePassword(Request $request)
+    {
+        // Validate and update the user's password
+        $validator = Validator::make($request->all(), [
+            'password' => 'required|string|min:8',
+            'new_password' => 'required|string|min:8',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput()->with('error', "An error occured try again");
+        }
+
+        // Check if the current password is correct
+        if (!Hash::check($request->input('password'), auth()->user()->password)) {
+            return redirect()->back()->with('error', 'Password Does not match our record');
+        }
+
+        // Update the password
+        auth()->user()->update(['password' => bcrypt($request->input('new_password'))]);
+
+        return redirect()->back()->with('success', 'Password updated successfully!');
+    }
 }

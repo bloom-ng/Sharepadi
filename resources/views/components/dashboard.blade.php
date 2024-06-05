@@ -151,7 +151,7 @@
                 </span>
                 Tutorials
             </a>
-            <a href="forms.html"
+            <a href="/user/account"
                 class="flex items-center {{ $page == 'account' ? 'active-nav-link' : '' }} opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <span class="mr-3">
                     <svg width="50" height="52" viewBox="0 0 50 52" fill="none"
