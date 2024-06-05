@@ -209,4 +209,5 @@
             }
         });
     </script>
+    
 </x-dashboard>

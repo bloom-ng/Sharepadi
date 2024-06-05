@@ -336,7 +336,7 @@
         class="bg-white w-full px-8 py-6 rounded-[40px] max-w-[90%] md:max-w-[80%] lg:max-w-[60%] xl:max-w-[50%] 2xl:max-w-[40%]">
         <div class="flex justify-between items-start">
             <h2 class="text-[24px] md:text-[28px] font-semibold montserrat-bold">Pricing Calculator</h2>
-            <button id="backButton" class="text-black">
+            <!-- <button id="backButton" class="text-black">
                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none"
                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <rect width="40" height="40" fill="url(#pattern0_563_934)" />
@@ -349,7 +349,7 @@
                             xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAACYUlEQVR4nO2dX2vUQBRHf3b9JmIrPsleS/zWRUXsk+sXahso/WMVIoEJSHFp0j+5c++cA/vWh8k5yWSbDTMSAAAAAAAAAAAAhOKV2uK1pI0q4IOkU0k3kn5J+irpnfLyXtJ3SX8k3UnaSTr2lH8pabj3uZDUKR9dObb7x3sl6aPHgE7/M5jp0yeL0JVj2ne8P9Ye0EGZdoYGInQPyB/KdDTeF1bl+oFBZYjQzZA/lPvf6pzMGFjkCN1M+ePns8cA3+y5KWWI0C2Qf1FcuLCVdLYgwifVj0k6j3RiZYpg0eRnimBR5WeIYNHlR45gWeRHjGDZ5EeKYFnlR4hg2eXXHMFakV9jBGtNfk0RrFX5NUSw1uV7RjDk+0Uw5PtFMOT7RTDk+0Uw5PtFMOT7RTDk+0Uw5PtFMOT7RTDk+0Uw5PtFMOT7vZHQL/zbtP/hel4JA/LrjtBz5vtF6JHvdyX0yPeL0CP/ebEFXzWXPLaAF5BPhArkD1wJ/vIHIvjLH4iwnI5HEX7YIx6s1fDKSwrsCU81ieAof4IIj8Se8Xk+ERzlTxBhJvaCv2QRwVH+BBH2sOZvuFu+ovrJnyBCwfPthW3rV0INr45sW41Qg/xmI9Qkv7kINcpvJkLN8tNHiCA/bYRI8tNFiCg/TYTI8sNHyCA/bIRM8sNFOGLZSk3LVh56BPiW7Mx/yusx46rxq7Ipy/Vmlb90Orpdez+BcaHq38nlL4lw57Ghw88G5M+djsaNHFbneM8S9q1t4HDjtYHDFGFXpqNxHvwi6a3yclhuuLflmHee8v9lUzZ1aIWDWjbxAQAAAAAAAAAAAM3jL0Cqa8IDDlXqAAAAAElFTkSuQmCC" />
                     </defs>
                 </svg>
-            </button>
+            </button> -->
         </div>
         <p class="my-6 font-medium montserrat-medium">Summary</p>
         <div class="my-8 bg-[#FFEEE7] rounded-2xl p-6">
@@ -383,3 +383,211 @@
     </div>
 </div>
 
+<script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabs = document.querySelectorAll('.tab');
+            const nextButtons = document.querySelectorAll('.next');
+            const prevButtons = document.querySelectorAll('.prev');
+
+            let currentTab = 0;
+            showTab(currentTab);
+
+            nextButtons.forEach((button, index) => {
+                button.addEventListener('click', () => {
+                    if (validateForm(index)) {
+                        tabs[currentTab].classList.remove('active');
+                        currentTab++;
+                        showTab(currentTab);
+                    }
+                });
+            });
+
+            prevButtons.forEach((button, index) => {
+                button.addEventListener('click', () => {
+                    tabs[currentTab].classList.remove('active');
+                    currentTab--;
+                    showTab(currentTab);
+                });
+            });
+
+            function showTab(n) {
+                tabs[n].classList.add('active');
+            }
+
+            function validateForm(tabIndex) {
+                const inputs = tabs[tabIndex].querySelectorAll('input');
+                let valid = true;
+                inputs.forEach(input => {
+                    if (input.value.trim() === '') {
+                        valid = false;
+                        input.classList.add('invalid');
+                    } else {
+                        input.classList.remove('invalid');
+                    }
+                });
+                return valid;
+            }
+        });
+</script>
+<script>
+    const userBalance = <?php echo Auth::user()->walletBalance(); ?>;
+
+    document.getElementById('nextCustomTask').addEventListener('click', () => {
+        handleNextButton('custom_task', 'formCustomTask');
+    });
+
+    document.getElementById('nextWhatsAppStatusPost').addEventListener('click', () => {
+        handleNextButton('whatsapp_status_post', 'formWhatsAppStatusPost');
+    });
+
+    document.getElementById('nextWhatsAppAddUp').addEventListener('click', () => {
+        handleNextButton('whatsapp_add_up', 'formWhatsAppAddUp');
+    });
+
+    document.getElementById('backButton').addEventListener('click', () => {
+        document.getElementById('confirmationPopup').classList.add('hidden');
+    });
+
+    document.getElementById('payButton').addEventListener('click', () => {
+        const form = document.getElementById(activeFormId);
+        form.submit();
+        event.preventDefault();
+    });
+
+    let activeFormId;
+
+    function handleNextButton(taskType, formId) {
+        let apiEndpoint;
+
+        if (taskType === 'custom_task') {
+            apiEndpoint = '/user/settings/cost_per_action';
+            const quantity = document.querySelector(`#${formId} input[name="quantity"]`).value;
+            const instructions = document.querySelector(`#${formId} textarea[name="instructions"]`).value;
+
+            fetch(apiEndpoint)
+                .then(response => response.json())
+                .then(data => {
+                    const value = data.value;
+                    const amount = value * quantity;
+                    showSummary('Custom Task', quantity, instructions);
+                    showConfirmationPopup(amount, formId);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+
+        } else if (taskType === 'whatsapp_status_post') {
+            apiEndpoint = '/user/settings/reach_per_budget';
+            const budget = document.querySelector(`#${formId} input[name="budget"]`).value;
+            const file = document.querySelector(`#${formId} input[name="task_file"]`).files[0];
+            const caption = document.querySelector(`#${formId} textarea[name="caption"]`).value;
+
+            fetch(apiEndpoint)
+                .then(response => response.json())
+                .then(data => {
+                    const value = data.value;
+                    const estimatedReach = budget * value;
+                    showSummary('WhatsApp Status Post', estimatedReach, caption, file);
+                    showConfirmationPopup(budget, formId);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+
+        } else if (taskType === 'whatsapp_add_up') {
+            apiEndpoint = '/user/settings/cost_per_add_up';
+            const addUps = document.querySelector(`#${formId} input[name="quantity"]`).value;
+            const link = document.querySelector(`#${formId} input[name="add_up_link"]`).value;
+            const state = document.querySelector(`#${formId} select[name="states"]`).value;
+            const gender = document.querySelector(`#${formId} select[name="gender"]`).value;
+
+            fetch(apiEndpoint)
+                .then(response => response.json())
+                .then(data => {
+                    const value = data.value;
+                    const amount = value * addUps;
+                    showSummary('WhatsApp Add Up', addUps, link, '', state, gender);
+                    showConfirmationPopup(amount, formId);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        } else {
+            alert("GOT TO ELSE")
+        }
+    }
+
+    function showSummary(taskType, detail, instructions, file, state, gender) {
+        let summaryText = '';
+        if (taskType === 'Custom Task') {
+            summaryText = `
+            <div class="my-4">
+                <p class="montserrat-thin font-light text-[20px]">Campaign Name</p>
+                <h3 class="font-semibold montserrat-medium text-[24px]">${taskType}</h3>
+            </div>
+            <div class="my-4">
+                <p class="montserrat-thin font-light text-[20px]">Quantity</p>
+                <h3 class="font-semibold montserrat-medium text-[24px]">${detail} people will complete your task.</h3>
+            </div>
+            <div class="my-4">
+                <p class="montserrat-thin font-light text-[20px]">Instructions</p>
+                <h3 class="font-semibold montserrat-medium text-[24px]">${instructions}</h3>
+            </div>`;
+        } else if (taskType === 'WhatsApp Status Post') {
+            summaryText = `
+                <div class="my-4">
+                    <p class="montserrat-thin font-light text-[20px]">Campaign Name</p>
+                    <h3 class="font-semibold montserrat-medium text-[24px]">${taskType}</h3>
+                </div>
+                <div class="my-4">
+                    <p class="montserrat-thin font-light text-[20px]">Estimated number of views</p>
+                    <h3 class="font-semibold montserrat-medium text-[24px]">Your ADs will get approximately ${detail} Views.</h3>
+                </div>
+                ${file ? `
+                    <div class="my-4">
+                        <p class="montserrat-thin font-light text-[20px]">AD Image/Video</p>
+                        <a href="${file}" class="font-semibold montserrat-medium text-[24px] text-[#F48857]">View file</a>
+                    </div>` : ""
+                }
+                <div class="my-4">
+                    <p class="montserrat-thin font-light text-[20px]">Caption</p>
+                    <h3 class="font-semibold montserrat-medium text-[24px]">${instructions}</h3>
+                </div>
+            `;
+
+        } else if (taskType === 'WhatsApp Add Up') {
+            summaryText = `
+                <div class="my-4">
+                    <p class="montserrat-thin font-light text-[20px]">Campaign Name</p>
+                    <h3 class="font-semibold montserrat-medium text-[24px]">${taskType}</h3>
+                </div>
+                <div class="my-4">
+                    <p class="montserrat-thin font-light text-[20px]">Estimated number of add ups</p>
+                    <h3 class="font-semibold montserrat-medium text-[24px]">${detail} people will add you up</h3>
+                </div>
+                <div class="my-4">
+                    <p class="montserrat-thin font-light text-[20px]">Targeted State(s)</p>
+                    <h3 class="font-semibold montserrat-medium text-[24px]">${state}</h3>
+                </div>
+                <div class="my-4">
+                    <p class="montserrat-thin font-light text-[20px]">Targeted gender(s)</p>
+                    <h3 class="font-semibold montserrat-medium text-[24px]">${gender}</h3>
+                </div>
+                <div class="my-4">
+                    <p class="montserrat-thin font-light text-[20px]">Link</p>
+                    <a href="${instructions}" target="_blank" class="font-semibold montserrat-medium text-[24px] text-[#F48857]">${instructions}</a>
+                </div>
+            `;
+        }
+        document.getElementById('summaryText').innerHTML = summaryText;
+    }
+
+    function showConfirmationPopup(amount, formId) {
+        document.getElementById('amountDisplay').innerText = `₦${amount.toLocaleString()}`;
+        document.querySelector(`#${formId} input[name="cost"]`).value = amount;
+        activeFormId = formId;
+        document.getElementById('confirmationPopup').classList.remove('hidden');
+        const payButton = document.getElementById('payButton');
+        payButton.disabled = userBalance < amount;
+    }
+</script>
