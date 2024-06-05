@@ -31,11 +31,13 @@ class CampaignController extends Controller
     {
         $validated = $request->validate([
             'limit' => 'integer|nullable',
-            'search' => 'string|nullable'
+            'search' => 'string|nullable',
+            'status' => 'string|nullable',
         ]);
 
         $limit = $validated['limit'] ?? 10;
         $search = $validated['search'] ?? null;
+        $status = $validated['status'] ?? null;
 
         // $states = $this->getStates(Auth::user()->country);
         $actions = CampaignAction::ACTIONS;
@@ -46,7 +48,7 @@ class CampaignController extends Controller
             $query->where(function ($q) use ($search) {
                 $q->where('title', 'like', '%' . $search . '%')
                     ->orWhere('type', 'like', '%' . $search . '%')
-                    ->orWhere('status', 'like', '%' . $search . '%')
+                    ->orWhere('status', 'like', '%' . $status . '%')
                     ->orWhere('cost', 'like', '%' . $search . '%');
             });
         }
@@ -60,11 +62,13 @@ class CampaignController extends Controller
     {
         $validated = $request->validate([
             'limit' => 'integer|nullable',
-            'search' => 'string|nullable'
+            'search' => 'string|nullable',
+            'status' => 'string|nullable',
         ]);
 
         $limit = $validated['limit'] ?? 10;
         $search = $validated['search'] ?? null;
+        $status = $validated['status'] ?? null;
 
         $states = $this->getStates(Auth::user()->country);
         $actions = CampaignAction::ACTIONS;
@@ -75,7 +79,7 @@ class CampaignController extends Controller
             $query->where(function ($q) use ($search) {
                 $q->where('title', 'like', '%' . $search . '%')
                     ->orWhere('type', 'like', '%' . $search . '%')
-                    ->orWhere('status', 'like', '%' . $search . '%')
+                    ->orWhere('status', 'like', '%' . $status . '%')
                     ->orWhere('cost', 'like', '%' . $search . '%');
             });
         }

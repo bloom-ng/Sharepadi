@@ -81,7 +81,14 @@
                     </button>
                 </div>
 
-                <div><button type="button" class="bg-[#FFEEE7] rounded-full px-8 py-2">Filter By</button></div>
+                <div>
+                    <select name="status" class="bg-[#FFEEE7] rounded-full px-8 py-2">
+                        <option value="">Filter By</option>
+                        <option value="pending">Awaiting Payment</option>
+                        <option value="active">Active</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
             </form>
 
             <div class="flex justify-center lg:justify-end w-full my-8">

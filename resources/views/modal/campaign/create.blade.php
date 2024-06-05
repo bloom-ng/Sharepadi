@@ -42,12 +42,11 @@
                     </svg>
                     <h3 class="montserrat-medium my-3 font-semibold text-xl lg:text-2xl">Custom Task</h3>
                     <p class="montserrat-thin italic font-light text-ellipsis">
-                        Pay people to <br>
-                        perform any social task you <br>
+                        Pay people to 
+                        perform any social task you 
                         want.
-                        <br />
-                        Just input what you <br>
-                        want and let our users <br>
+                        Just input what you 
+                        want and let our users 
                         do the magic.
                     </p>
                 </li>
@@ -68,10 +67,10 @@
 
                     <h3 class="montserrat-medium my-3 font-semibold text-xl lg:text-2xl">WhatsApp Status Post</h3>
                     <p class="montserrat-thin italic font-light">
-                        Pay people to post<br>
-                        your ADs on their<br>
-                        status till it gets to<br>
-                        your dessired views<br>
+                        Pay people to post
+                        your ADs on their
+                        status till it gets to
+                        your dessired views
                     </p>
                 </li>
                 <li id="tab3"
@@ -90,9 +89,9 @@
                     </svg>
                     <h3 class="montserrat-medium my-3 font-semibold text-xl lg:text-2xl">WhatsApp Add Up</h3>
                     <p class="montserrat-thin italic font-light">
-                        Increase your <br>
-                        contacts and views <br>
-                        on WhatsApp with <br>
+                        Increase your
+                        contacts and views
+                        on WhatsApp with
                         our Add Up.
                     </p>
                 </li>
@@ -384,165 +383,3 @@
     </div>
 </div>
 
-<script>
-    const userBalance = <?php echo Auth::user()->walletBalance(); ?>;
-
-    document.getElementById('nextCustomTask').addEventListener('click', () => {
-        handleNextButton('custom_task', 'formCustomTask');
-    });
-
-    document.getElementById('nextWhatsAppStatusPost').addEventListener('click', () => {
-        handleNextButton('whatsapp_status_post', 'formWhatsAppStatusPost');
-    });
-
-    document.getElementById('nextWhatsAppAddUp').addEventListener('click', () => {
-        handleNextButton('whatsapp_add_up', 'formWhatsAppAddUp');
-    });
-
-    document.getElementById('backButton').addEventListener('click', () => {
-        document.getElementById('confirmationPopup').classList.add('hidden');
-    });
-
-    document.getElementById('payButton').addEventListener('click', () => {
-        const form = document.getElementById(activeFormId);
-        form.submit();
-        event.preventDefault();
-    });
-
-    let activeFormId;
-
-    function handleNextButton(taskType, formId) {
-        let apiEndpoint;
-
-        if (taskType === 'custom_task') {
-            apiEndpoint = '/user/settings/cost_per_action';
-            const quantity = document.querySelector(`#${formId} input[name="quantity"]`).value;
-            const instructions = document.querySelector(`#${formId} textarea[name="instructions"]`).value;
-
-            fetch(apiEndpoint)
-                .then(response => response.json())
-                .then(data => {
-                    const value = data.value;
-                    const amount = value * quantity;
-                    showSummary('Custom Task', quantity, instructions);
-                    showConfirmationPopup(amount, formId);
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-
-        } else if (taskType === 'whatsapp_status_post') {
-            apiEndpoint = '/user/settings/reach_per_budget';
-            const budget = document.querySelector(`#${formId} input[name="budget"]`).value;
-            const file = document.querySelector(`#${formId} input[name="task_file"]`).files[0];
-            const caption = document.querySelector(`#${formId} textarea[name="caption"]`).value;
-
-            fetch(apiEndpoint)
-                .then(response => response.json())
-                .then(data => {
-                    const value = data.value;
-                    const estimatedReach = budget * value;
-                    showSummary('WhatsApp Status Post', estimatedReach, caption, file);
-                    showConfirmationPopup(budget, formId);
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-
-        } else if (taskType === 'whatsapp_add_up') {
-            apiEndpoint = '/user/settings/cost_per_add_up';
-            const addUps = document.querySelector(`#${formId} input[name="quantity"]`).value;
-            const link = document.querySelector(`#${formId} input[name="add_up_link"]`).value;
-            const state = document.querySelector(`#${formId} select[name="states"]`).value;
-            const gender = document.querySelector(`#${formId} select[name="gender"]`).value;
-
-            fetch(apiEndpoint)
-                .then(response => response.json())
-                .then(data => {
-                    const value = data.value;
-                    const amount = value * addUps;
-                    showSummary('WhatsApp Add Up', addUps, link, '', state, gender);
-                    showConfirmationPopup(amount, formId);
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        } else {
-            alert("GOT TO ELSE")
-        }
-    }
-
-    function showSummary(taskType, detail, instructions, file, state, gender) {
-        let summaryText = '';
-        if (taskType === 'Custom Task') {
-            summaryText = `
-            <div class="my-4">
-                <p class="montserrat-thin font-light text-[20px]">Campaign Name</p>
-                <h3 class="font-semibold montserrat-medium text-[24px]">${taskType}</h3>
-            </div>
-            <div class="my-4">
-                <p class="montserrat-thin font-light text-[20px]">Quantity</p>
-                <h3 class="font-semibold montserrat-medium text-[24px]">${detail} people will complete your task.</h3>
-            </div>
-            <div class="my-4">
-                <p class="montserrat-thin font-light text-[20px]">Instructions</p>
-                <h3 class="font-semibold montserrat-medium text-[24px]">${instructions}</h3>
-            </div>`;
-        } else if (taskType === 'WhatsApp Status Post') {
-            summaryText = `
-                <div class="my-4">
-                    <p class="montserrat-thin font-light text-[20px]">Campaign Name</p>
-                    <h3 class="font-semibold montserrat-medium text-[24px]">${taskType}</h3>
-                </div>
-                <div class="my-4">
-                    <p class="montserrat-thin font-light text-[20px]">Estimated number of views</p>
-                    <h3 class="font-semibold montserrat-medium text-[24px]">Your ADs will get approximately ${detail} Views.</h3>
-                </div>
-                ${file ? `
-                    <div class="my-4">
-                        <p class="montserrat-thin font-light text-[20px]">AD Image/Video</p>
-                        <a href="${file}" class="font-semibold montserrat-medium text-[24px] text-[#F48857]">View file</a>
-                    </div>` : ""
-                }
-                <div class="my-4">
-                    <p class="montserrat-thin font-light text-[20px]">Caption</p>
-                    <h3 class="font-semibold montserrat-medium text-[24px]">${instructions}</h3>
-                </div>
-            `;
-
-        } else if (taskType === 'WhatsApp Add Up') {
-            summaryText = `
-                <div class="my-4">
-                    <p class="montserrat-thin font-light text-[20px]">Campaign Name</p>
-                    <h3 class="font-semibold montserrat-medium text-[24px]">${taskType}</h3>
-                </div>
-                <div class="my-4">
-                    <p class="montserrat-thin font-light text-[20px]">Estimated number of add ups</p>
-                    <h3 class="font-semibold montserrat-medium text-[24px]">${detail} people will add you up</h3>
-                </div>
-                <div class="my-4">
-                    <p class="montserrat-thin font-light text-[20px]">Targeted State(s)</p>
-                    <h3 class="font-semibold montserrat-medium text-[24px]">${state}</h3>
-                </div>
-                <div class="my-4">
-                    <p class="montserrat-thin font-light text-[20px]">Targeted gender(s)</p>
-                    <h3 class="font-semibold montserrat-medium text-[24px]">${gender}</h3>
-                </div>
-                <div class="my-4">
-                    <p class="montserrat-thin font-light text-[20px]">Link</p>
-                    <a href="${instructions}" target="_blank" class="font-semibold montserrat-medium text-[24px] text-[#F48857]">${instructions}</a>
-                </div>
-            `;
-        }
-        document.getElementById('summaryText').innerHTML = summaryText;
-    }
-
-    function showConfirmationPopup(amount, formId) {
-        document.getElementById('amountDisplay').innerText = `₦${amount.toLocaleString()}`;
-        document.querySelector(`#${formId} input[name="cost"]`).value = amount;
-        activeFormId = formId;
-        document.getElementById('confirmationPopup').classList.remove('hidden');
-        const payButton = document.getElementById('payButton');
-        payButton.disabled = userBalance < amount;
-    }
-</script>
