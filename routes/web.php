@@ -100,5 +100,5 @@ Route::group(['prefix' => 'admin', 'middleware' => App\Http\Middleware\Admin::cl
 
     // Route::get('/settings/{key}', [SettingController::class, 'getOne']);
 
-    Route::get("/logout", [AuthController::class, 'logout'])->name("logout");
+    Route::get("/logout", [AdminAuthController::class, 'logout'])->name("logout");
 });
