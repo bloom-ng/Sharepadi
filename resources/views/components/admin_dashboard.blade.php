@@ -77,7 +77,7 @@
             </a>
         </div>
         <nav class="text-black text-base font-semibold pt-3">
-            <a href="/user/dashboard"
+            <a href="/admin/dashboard"
                 class="flex items-center {{ $page == 'dashboard' ? 'active-nav-link' : '' }} opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <span class="mr-3">
                     <svg width="52" height="52" viewBox="0 0 52 52" fill="none"
@@ -95,7 +95,7 @@
                 </span>
                 Dashboard
             </a>
-            <a href="/user/campaigns"
+            <a href="/admin/campaigns"
                 class="flex items-center {{ $page == 'campaigns' ? 'active-nav-link' : '' }} opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <span class="mr-3">
                     <svg width="52" height="52" viewBox="0 0 52 52" fill="none"
@@ -113,7 +113,7 @@
                 </span>
                 Campaigns
             </a>
-            <a href="/user/wallet"
+            <!-- <a href="/admin/wallet"
                 class="flex items-center {{ $page == 'wallet' ? 'active-nav-link' : '' }} opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <span class="mr-3">
                     <svg width="52" height="52" viewBox="0 0 52 52" fill="none"
@@ -131,8 +131,8 @@
 
                 </span>
                 Add Funds
-            </a>
-            <a href="/user/tutorials"
+            </a> -->
+            <a href="/admin/tutorials"
                 class="flex items-center {{ $page == 'tutorials' ? 'active-nav-link' : '' }} opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <span class="mr-3">
                     <svg width="52" height="52" viewBox="0 0 52 52" fill="none"
@@ -151,8 +151,22 @@
                 </span>
                 Tutorials
             </a>
-            <a href="forms.html"
-                class="flex items-center {{ $page == 'account' ? 'active-nav-link' : '' }} opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+            <a href="/admin/admins"
+                class="flex items-center {{ $page == 'admins' ? 'active-nav-link' : '' }} opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+                <span class="mr-3">
+                    <i class="fa fa-user text-[#F48857] text-5xl mr-2" aria-hidden="true"></i>
+                </span>
+                Admins
+            </a>
+            <a href="/admin/users"
+                class="flex items-center {{ $page == 'users' ? 'active-nav-link' : '' }} opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+                <span class="mr-3">
+                    <i class="fa fa-user text-[#F48857] text-5xl mr-2" aria-hidden="true"></i>
+                </span>
+                Users
+            </a>
+            <a href="/admin/settings"
+                class="flex items-center {{ $page == 'settings' ? 'active-nav-link' : '' }} opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <span class="mr-3">
                     <svg width="50" height="52" viewBox="0 0 50 52" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -161,10 +175,16 @@
                             fill="#F48857" />
                     </svg>
                 </span>
-                Account
+                Settings
+            </a>
+            
+            <a href="/admin/faqs"
+                class="flex items-center {{ $page == 'faqs' ? 'active-nav-link' : '' }} opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+                <i class="fa fa-question-circle text-[#F48857] text-5xl mr-2" aria-hidden="true"></i>
+                Faqs
             </a>
         </nav>
-        <a href="/user/logout"
+        <a href="/admin/logout"
             class="absolute w-full upgrade-btn bottom-0 active-nav-link flex items-center justify-center py-4">
             <i class="fas fa-arrow-circle-right mr-3"></i>
             Logout
@@ -175,7 +195,6 @@
         <!-- Desktop Header -->
         <header class="w-full items-center bg-[#F0F0F0] py-4 px-6 hidden sm:flex">
             <div class="w-1/2 text-black">
-                {{ $currentDate }}
             </div>
             <div x-data="{ isOpen: false }" class="relative w-1/2 flex justify-end">
                 <button @click="isOpen = !isOpen"
@@ -185,9 +204,11 @@
                 <button x-show="isOpen" @click="isOpen = false"
                     class="h-full w-full fixed inset-0 cursor-default"></button>
                 <div x-show="isOpen" class="absolute w-32 bg-white rounded-lg shadow-lg py-2 mt-16">
-                    <a href="#" class="block px-4 py-2 account-link hover:text-white">Account</a>
-                    <a href="#" class="block px-4 py-2 account-link hover:text-white">Support</a>
-                    <a href="/user/logout" class="block px-4 py-2 account-link hover:text-white">Logout</a>
+                    <!-- <a href="#" class="block px-4 py-2 account-link hover:text-white">Admins</a>
+                    <a href="#" class="block px-4 py-2 account-link hover:text-white">Users</a>
+                    <a href="#" class="block px-4 py-2 account-link hover:text-white">Settings</a>
+                    <a href="#" class="block px-4 py-2 account-link hover:text-white">Support</a> -->
+                    <a href="/admin/logout" class="block px-4 py-2 account-link hover:text-white">Logout</a>
                 </div>
             </div>
         </header>
@@ -206,32 +227,42 @@
 
             <!-- Dropdown Nav -->
             <nav :class="isOpen ? 'flex' : 'hidden'" class="flex flex-col pt-4 text-[#F48857]">
-                <a href="/user/dashboard"
+                <a href="/admin/dashboard"
                     class="flex items-center {{ $page == 'dashboard' ? 'active-nav-link' : '' }} opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i></i>
                     Dashboard
                 </a>
-                <a href="blank.html"
+                <a href="/admin/campaigns"
                     class="flex items-center {{ $page == 'campaigns' ? 'active-nav-link' : '' }} opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fas fa-sticky-note mr-3"></i>
                     Campaigns
                 </a>
-                <a href="/user/wallet"
-                    class="flex items-center {{ $page == 'wallet' ? 'active-nav-link' : '' }} opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-                    <i class="fas fa-table mr-3"></i>
-                    Add Funds
-                </a>
-                <a href="forms.html"
+                <a href="/admin/tutorials"
                     class="flex items-center {{ $page == 'tutorials' ? 'active-nav-link' : '' }} opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fas fa-align-left mr-3"></i>
                     Tutorials
                 </a>
-                <a href="#"
-                    class="flex items-center {{ $page == 'account' ? 'active-nav-link' : '' }} opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-                    <i class="fas fa-cogs mr-3"></i>
-                    Account
+                <a href="/admin/admins"
+                    class="flex items-center {{ $page == 'admins' ? 'active-nav-link' : '' }} opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                    <i class="fa fa-user mr-3"></i>
+                    Admins
                 </a>
-                <a href="/user/logout" class="flex items-center opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                <a href="/admin/users"
+                    class="flex items-center {{ $page == 'users' ? 'active-nav-link' : '' }} opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                    <i class="fa fa-user mr-3"></i>
+                    Users
+                </a>
+                <a href="/admin/settings"
+                    class="flex items-center {{ $page == 'settings' ? 'active-nav-link' : '' }} opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                    <i class="fas fa-cogs mr-3"></i>
+                    Settings
+                </a>
+                <a href="/admin/faqs"
+                    class="flex items-center {{ $page == 'faqs' ? 'active-nav-link' : '' }} opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                    <i class="fa fa-question-circle mr-3"></i>
+                    Faqs
+                </a>
+                <a href="/admin/logout" class="flex items-center opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fas fa-sign-out-alt mr-3"></i>
                     Sign Out
                 </a>
@@ -239,16 +270,40 @@
         </header>
 
         {{ $slot }}
-        {{-- <footer
-            class="absolute bottom-0 flex justify-between items-center w-screen max-w-screen bg-[#F0F0F0] text-right p-4">
-            <p>SharePadi is created by BLOOM DIGITAL MEDIA LTD.  2024. All Rights Reserved</p>
-            <div>
-                <a href="https://instagram.com">ig</a>
-                <a href=""></a>
-                <a href=""></a>
-                <a href=""></a>
+        <div class="flex-grow"></div>
+        <footer
+            class="relative flex justify-between items-center w-full max-w-screen bg-[#F0F0F0] text-right p-4">
+            <p>SharePadi is developed by <a href="https://bloomdigitmedia.com" class="underline text-black">BLOOM DIGITAL MEDIA LTD.</a> 2024. All Rights Reserved</p>
+            <div class="flex">
+                <a
+                                href="https://www.instagram.com/bloom_digitalmedia?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                                target="_blank"
+                                ><img
+                                    src="/images/Instagram2.svg"
+                                    alt="Instagram Link"
+                            /></a>
+                            <a
+                                href="https://x.com/bloomdigitmedia?s=20"
+                                target="_blank"
+                                ><img
+                                    src="/images/TwitterX.svg"
+                                    alt="X Link" /></a
+                            ><a
+                                href="https://www.facebook.com/bloomdigitmedia/"
+                                target="_blank"
+                                ><img
+                                    src="/images/Facebook2.png"
+                                    alt="Facebook Link"
+                            /></a>
+                            <a
+                                href="https://www.linkedin.com/company/bloom-digital-media-nigeria/"
+                                target="_blank"
+                                ><img
+                                    src="/images/LinkedIn2.png"
+                                    alt="LinkedIn Link"
+                            /></a>
             </div>
-        </footer> --}}
+        </footer>
     </div>
 
     <!-- AlpineJS -->

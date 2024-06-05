@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Campaign;
+use App\Models\Wallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,6 +15,21 @@ class DashboardController extends Controller
     {
         $user_id = Auth::user()->id;
         $balance = User::where('id', $user_id)->first()->walletBalance();
-        return view('dashboard.user.index')->with(['balance' => $balance, 'campaigns' => 0, 'orders' => 0]);
+        $campaigns = Campaign::where('user_id', $user_id)->where('status', Campaign::CAMPAIGN_ACTIVE)->count();
+        $orders = Campaign::where('user_id', $user_id)->count();
+        return view('dashboard.user.index')->with(['balance' => $balance, 'campaigns' => $campaigns, 'orders' => $orders]);
+    }
+
+    public function adminIndex()
+    {
+        // $user_id = Auth::user()->id;
+        $campaigns = Campaign::where('status', Campaign::CAMPAIGN_ACTIVE)->count();
+        $orders = Campaign::all()->count();
+        $users = User::all()->count();
+        $credit = Wallet::all()->where('type', 'credit')->sum('amount');
+        $debit =  Wallet::all()->where('type', 'debit')->sum('amount');
+        $balance = $credit - $debit;
+
+        return view('dashboard.admin.index')->with(['users' => $users, 'campaigns' => $campaigns, 'orders' => $orders, 'balance' => $balance]);
     }
 }

@@ -27,6 +27,35 @@ class CampaignController extends Controller
         }
     }
 
+    public function adminIndex(Request $request)
+    {
+        $validated = $request->validate([
+            'limit' => 'integer|nullable',
+            'search' => 'string|nullable'
+        ]);
+
+        $limit = $validated['limit'] ?? 10;
+        $search = $validated['search'] ?? null;
+
+        // $states = $this->getStates(Auth::user()->country);
+        $actions = CampaignAction::ACTIONS;
+
+        $query = Campaign::with('actions')->with('user');
+
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('title', 'like', '%' . $search . '%')
+                    ->orWhere('type', 'like', '%' . $search . '%')
+                    ->orWhere('status', 'like', '%' . $search . '%')
+                    ->orWhere('cost', 'like', '%' . $search . '%');
+            });
+        }
+
+        $campaigns = $query->paginate($limit);
+
+        return view('dashboard.admin.campaigns.index', compact('actions', 'campaigns', 'limit'));
+    }
+
     public function index(Request $request)
     {
         $validated = $request->validate([

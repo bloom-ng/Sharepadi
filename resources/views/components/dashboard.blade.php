@@ -164,11 +164,11 @@
                 Account
             </a>
         </nav>
-        <a href="/user/logout"
+        <!-- <a href="/user/logout"
             class="absolute w-full upgrade-btn bottom-0 active-nav-link flex items-center justify-center py-4">
             <i class="fas fa-arrow-circle-right mr-3"></i>
             Logout
-        </a>
+        </a> -->
     </aside>
 
     <div class="w-full flex flex-col h-screen overflow-y-hidden">
@@ -185,8 +185,8 @@
                 <button x-show="isOpen" @click="isOpen = false"
                     class="h-full w-full fixed inset-0 cursor-default"></button>
                 <div x-show="isOpen" class="absolute w-32 bg-white rounded-lg shadow-lg py-2 mt-16">
-                    <a href="#" class="block px-4 py-2 account-link hover:text-white">Account</a>
-                    <a href="#" class="block px-4 py-2 account-link hover:text-white">Support</a>
+                    <a href="/user/account" class="block px-4 py-2 account-link hover:text-white">Account</a>
+                    <!-- <a href="" class="block px-4 py-2 account-link hover:text-white">Support</a> -->
                     <a href="/user/logout" class="block px-4 py-2 account-link hover:text-white">Logout</a>
                 </div>
             </div>
@@ -221,14 +221,14 @@
                     <i class="fas fa-table mr-3"></i>
                     Add Funds
                 </a>
-                <a href="forms.html"
+                <a href="/user/tutorials"
                     class="flex items-center {{ $page == 'tutorials' ? 'active-nav-link' : '' }} opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fas fa-align-left mr-3"></i>
                     Tutorials
                 </a>
-                <a href="#"
+                <a href="/user/account"
                     class="flex items-center {{ $page == 'account' ? 'active-nav-link' : '' }} opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-                    <i class="fas fa-cogs mr-3"></i>
+                    <i class="fa fa-user mr-3"></i>
                     Account
                 </a>
                 <a href="/user/logout" class="flex items-center opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
@@ -239,16 +239,40 @@
         </header>
 
         {{ $slot }}
-        {{-- <footer
-            class="absolute bottom-0 flex justify-between items-center w-screen max-w-screen bg-[#F0F0F0] text-right p-4">
-            <p>SharePadi is created by BLOOM DIGITAL MEDIA LTD.  2024. All Rights Reserved</p>
-            <div>
-                <a href="https://instagram.com">ig</a>
-                <a href=""></a>
-                <a href=""></a>
-                <a href=""></a>
+        <div class="flex-grow"></div>
+        <footer
+            class="relative flex justify-between items-center w-full max-w-screen bg-[#F0F0F0] text-right p-4">
+            <p>SharePadi is developed by <a href="https://bloomdigitmedia.com" class="underline text-black">BLOOM DIGITAL MEDIA LTD.</a> 2024. All Rights Reserved</p>
+            <div class="flex">
+                <a
+                                href="https://www.instagram.com/bloom_digitalmedia?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                                target="_blank"
+                                ><img
+                                    src="/images/Instagram2.svg"
+                                    alt="Instagram Link"
+                            /></a>
+                            <a
+                                href="https://x.com/bloomdigitmedia?s=20"
+                                target="_blank"
+                                ><img
+                                    src="/images/TwitterX.svg"
+                                    alt="X Link" /></a
+                            ><a
+                                href="https://www.facebook.com/bloomdigitmedia/"
+                                target="_blank"
+                                ><img
+                                    src="/images/Facebook2.png"
+                                    alt="Facebook Link"
+                            /></a>
+                            <a
+                                href="https://www.linkedin.com/company/bloom-digital-media-nigeria/"
+                                target="_blank"
+                                ><img
+                                    src="/images/LinkedIn2.png"
+                                    alt="LinkedIn Link"
+                            /></a>
             </div>
-        </footer> --}}
+        </footer>
     </div>
 
     <!-- AlpineJS -->
