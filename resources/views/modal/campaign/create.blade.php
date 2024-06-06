@@ -383,7 +383,7 @@
     </div>
 </div>
 
-<script>
+<!-- <script>
         document.addEventListener('DOMContentLoaded', function () {
             const tabs = document.querySelectorAll('.tab');
             const nextButtons = document.querySelectorAll('.next');
@@ -428,20 +428,54 @@
                 return valid;
             }
         });
-</script>
+</script> -->
 <script>
     const userBalance = <?php echo Auth::user()->walletBalance(); ?>;
 
+    function validateForm(id) {
+        const tabContent = document.getElementById(id);
+        const inputs = tabContent.querySelectorAll('input, select, textarea');
+        let valid = true;
+        inputs.forEach(input => {
+            if (input.name === 'cost' || input.name === 'task_file') {
+                return; // Skip validation for cost and task_file
+            }
+            if (input.value.trim() === '') {
+                valid = false;
+                console.log(input)
+            } else {
+                input.classList.remove('invalid');
+            }
+        });
+        return valid;
+    }
+
+
     document.getElementById('nextCustomTask').addEventListener('click', () => {
-        handleNextButton('custom_task', 'formCustomTask');
+        load = validateForm('tabContent1');
+        if(load){
+            handleNextButton('custom_task', 'formCustomTask');
+        } else {
+            alert('Fill all required field')
+        }
     });
 
     document.getElementById('nextWhatsAppStatusPost').addEventListener('click', () => {
-        handleNextButton('whatsapp_status_post', 'formWhatsAppStatusPost');
+        load = validateForm('tabContent2');
+        if(load){
+            handleNextButton('whatsapp_status_post', 'formWhatsAppStatusPost');
+        } else {
+            alert('Fill all required field')
+        }
     });
 
     document.getElementById('nextWhatsAppAddUp').addEventListener('click', () => {
-        handleNextButton('whatsapp_add_up', 'formWhatsAppAddUp');
+        load = validateForm('tabContent3');
+        if(load){
+            handleNextButton('whatsapp_add_up', 'formWhatsAppAddUp');
+        } else {
+            alert('Fill all required field')
+        }
     });
 
     document.getElementById('backButton').addEventListener('click', () => {
