@@ -383,52 +383,6 @@
     </div>
 </div>
 
-<!-- <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const tabs = document.querySelectorAll('.tab');
-            const nextButtons = document.querySelectorAll('.next');
-            const prevButtons = document.querySelectorAll('.prev');
-
-            let currentTab = 0;
-            showTab(currentTab);
-
-            nextButtons.forEach((button, index) => {
-                button.addEventListener('click', () => {
-                    if (validateForm(index)) {
-                        tabs[currentTab].classList.remove('active');
-                        currentTab++;
-                        showTab(currentTab);
-                    }
-                });
-            });
-
-            prevButtons.forEach((button, index) => {
-                button.addEventListener('click', () => {
-                    tabs[currentTab].classList.remove('active');
-                    currentTab--;
-                    showTab(currentTab);
-                });
-            });
-
-            function showTab(n) {
-                tabs[n].classList.add('active');
-            }
-
-            function validateForm(tabIndex) {
-                const inputs = tabs[tabIndex].querySelectorAll('input');
-                let valid = true;
-                inputs.forEach(input => {
-                    if (input.value.trim() === '') {
-                        valid = false;
-                        input.classList.add('invalid');
-                    } else {
-                        input.classList.remove('invalid');
-                    }
-                });
-                return valid;
-            }
-        });
-</script> -->
 <script>
     const userBalance = <?php echo Auth::user()->walletBalance(); ?>;
 
