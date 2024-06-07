@@ -7,12 +7,12 @@
             <div
                 class="flex flex-col items-center rounded-[34px] xl:h-[900px] 2xl:h-full basis-full lg:basis-1/2 bg-[#F0F0F0] pt-12 pb-4 px-8 md:px-24 lg:px-28"
             >
-                <div class="flex flex-row justify-between gap-6">
+                <div class="flex flex-row justify-between gap-10">
                     <h2 class="montserrat-bold text-[19px] xl:text-[32px] mb-8">
                         Login to Your Account
                     </h2>
                     <button id="closeButton7" class="-mt-8">
-                        <img src="/images/x-icon.png" class="" alt="" />
+                        <img src="/images/close.png" class="w-6" alt="" />
                     </button>
                 </div>
 

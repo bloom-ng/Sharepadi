@@ -7,12 +7,12 @@
             <div
                 class="flex flex-col items-center rounded-[34px] bg-[#F0F0F0] pt-12 pb-4 px-8 ph2:px-12 ph3:px-14 sm:px-20"
             >
-                <div class="flex flex-row justify-between gap-6">
+                <div class="flex flex-row justify-between gap-3 ph2:gap-6">
                     <h2 class="montserrat-bold text-[19px] mb-8">
                         Register an Account
                     </h2>
                     <button id="closeButton10" class="-mt-8">
-                        <img src="/images/x-icon.png" class="" alt="" />
+                        <img src="/images/close.png" class="w-4" alt="" />
                     </button>
                 </div>
 

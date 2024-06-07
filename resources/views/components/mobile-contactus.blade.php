@@ -7,10 +7,10 @@
             <div
                 class="flex flex-col items-center rounded-[34px] bg-[#F0F0F0] pt-12 pb-4 px-8 ph2:px-12 ph3:px-14 sm:px-20"
             >
-                <div class="flex flex-row justify-between gap-6">
+                <div class="flex flex-row justify-between gap-3 ph2:gap-6">
                     <h2 class="montserrat-bold text-[19px] mb-8">Contact Us</h2>
                     <button id="closeButton20" class="-mt-8">
-                        <img src="/images/x-icon.png" class="" alt="" />
+                        <img src="/images/close.png" class="w-4" alt="" />
                     </button>
                 </div>
 
@@ -132,7 +132,7 @@
                     </div>
 
                     <div
-                        class="flex items-center justify-center border border-[#FFEEE7] rounded-full max-w-[419px] w-full mb-8"
+                        class="flex items-center justify-center max-w-[419px] w-full mb-8"
                     >
                         <!-- <span>
                             <svg
@@ -178,7 +178,7 @@
                             <textarea
                                 id="Message_to_us"
                                 name="Message_to_us"
-                                rows="7"
+                                rows="4"
                                 placeholder=""
                                 class="w-full p-2 border-none bg-transparent montserrat-light italic text-[14px]"
                                 required
@@ -191,23 +191,10 @@
 
                     <button
                         type="submit"
-                        class="bg-[#F48857] text-white px-4 rounded-full w-full text-center font-extrabold max-w-[419px] py-[19px] md:mb-8 lg:mb-12"
+                        class="bg-[#F48857] border border-[#FFEEE7] rounded-3xl text-white px-4 rounded-full w-full text-center font-extrabold max-w-[419px] py-[19px] md:mb-8 lg:mb-12"
                     >
-                        Register
+                        Contact Us
                     </button>
-
-                    <div class="text-center mb-4">
-                        <p
-                            class="text-black font-medium montserrat-regular 14px"
-                        >
-                            Already have an account?
-                        </p>
-                    </div>
-                    <a
-                        href="{{ route('login') }}"
-                        class="bg-[#FFEEE7] text-white px-4 rounded-full w-full text-center font-extrabold max-w-[419px] py-[19px] lg:mb-12"
-                        >Login</a
-                    >
                 </form>
             </div>
         </div>

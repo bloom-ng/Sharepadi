@@ -30,9 +30,12 @@
             .hide-scrollbar::-webkit-scrollbar {
                 display: none;
             }
+
             .hide-scrollbar {
-                -ms-overflow-style: none; /* IE and Edge */
-                scrollbar-width: none; /* Firefox */
+                -ms-overflow-style: none;
+                /* IE and Edge */
+                scrollbar-width: none;
+                /* Firefox */
             }
         </style>
 
@@ -159,11 +162,12 @@
                     >
                 </p>
                 <div class="pt-14">
-                    <a
-                        href="#"
+                    <button
+                        id="link"
                         class="text-[#F0F0F0] montserrat-bold text-base md:text-[30px] bg-[#F48857] px-6 py-3 md:px-12 md:py-4 rounded-full"
-                        >Get Started Now</a
                     >
+                        Get Started Now
+                    </button>
                 </div>
             </div>
         </div>
@@ -405,6 +409,7 @@
         </div>
 
         <!-- component -->
+        <!-- for mobile -->
         <div class="block xl:hidden">
             <div class="pb-10">
                 <div class="flex flex-row justify-center">
@@ -581,6 +586,7 @@
                 </div>
             </div>
         </div>
+        <!-- for =>md -->
         <div class="hidden xl:block">
             <div class="container mx-auto w-full h-full">
                 <div class="relative wrap overflow-hidden p-10 h-full">
@@ -829,6 +835,21 @@
                                     background-image: url('/images/female-marketer.png');
                                 "
                             ></div>
+                            <div class="flex flex-col justify-center w-/1 mt-4">
+                                <div
+                                    class="flex flex-col pt-2 text-center text-[24px] w-[85%] md:w-[87%] lg:w-[500px] leading-[30px] montserrat-regular px-12"
+                                >
+                                    <div
+                                        class="text-[32px] text-[#F48857] pt-4 py-2 montserrat-extra-bold"
+                                    >
+                                        Marketers
+                                    </div>
+                                    By targeting specific actions related to
+                                    their products, marketers can increase the
+                                    likelihood of conversions through
+                                    personalized social proof.
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <!-- left timeline -->
@@ -858,20 +879,6 @@
                         </div>
                     </div>
                 </div> -->
-                </div>
-                <div class="flex flex-col w-1/2 pr-48 pl-8 mt-4">
-                    <div
-                        class="pt-2 text-center text-[24px] leading-[30px] montserrat-regular px-12"
-                    >
-                        <div
-                            class="text-[32px] text-[#F48857] pt-4 py-2 montserrat-extra-bold"
-                        >
-                            Marketers
-                        </div>
-                        By targeting specific actions related to their products,
-                        marketers can increase the likelihood of conversions
-                        through personalized social proof.
-                    </div>
                 </div>
             </div>
         </div>
@@ -1040,7 +1047,11 @@
                 <div class="flex flex-row justify-between">
                     <div class="pb-16">
                         Developed by
-                        <a href="https://bloomdigitmedia.com" target="_blank">
+                        <a
+                            href="https://bloomdigitmedia.com"
+                            class="underline"
+                            target="_blank"
+                        >
                             BLOOM DIGITAL MEDIA LTD.</a
                         >  2024. All Rights Reserved
                     </div>
@@ -1084,7 +1095,14 @@
             >
                 <div class="flex flex-col justify-between">
                     <div class="pb-5">
-                        SharePadi is created by BLOOM DIGITAL MEDIA LTD.
+                        Developed by
+                        <a
+                            href="https://bloomdigitmedia.com"
+                            class="underline"
+                            target="_blank"
+                        >
+                            BLOOM DIGITAL MEDIA LTD.</a
+                        >
                     </div>
                     <div class="pb-8">  2024. All Rights Reserved</div>
                     <div class="flex justify-center">
@@ -1311,6 +1329,13 @@
                 .getElementById("closeButton20")
                 .addEventListener("click", function () {
                     closeDropdown20();
+                });
+
+            document
+                .getElementById("link")
+                .addEventListener("click", function () {
+                    // Trigger click event on the button
+                    document.getElementById("dropdownButton9").click();
                 });
         </script>
     </body>
