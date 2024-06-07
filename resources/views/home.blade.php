@@ -25,7 +25,22 @@
             rel="stylesheet"
         />
 
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+        <style>
+            /* Custom CSS to hide scrollbar */
+            .hide-scrollbar::-webkit-scrollbar {
+                display: none;
+            }
+            .hide-scrollbar {
+                -ms-overflow-style: none; /* IE and Edge */
+                scrollbar-width: none; /* Firefox */
+            }
+        </style>
+
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+        />
     </head>
 
     <body>
@@ -43,7 +58,13 @@
                     </a>
                 </div>
                 <div class="flex justify-between gap-12 montserrat-medium">
-                    <a href="#">Contact Us</a>
+                    <div id="dropdownButton20" class="relative">
+                        <div onclick="toggleDropdown20()">
+                            <a href="#">Contact Us</a>
+                        </div>
+                        <x-contactus> </x-contactus>
+                    </div>
+
                     <div id="dropdownButton7" class="relative">
                         <div onclick="toggleDropdown7()">
                             <a href="#">Login</a>
@@ -121,7 +142,7 @@
                 class="absolute text-center z-20 sm:mx-8 md:mx-32 lg:mx-64 mt-36 md:mt-20 text-black"
             >
                 <h1
-                    class="text-[20px] mx-10 leading-[24px] sm:text-[45px] sm:leading-[40px] md:leading-[30px] md:leading-[40px] lg:text-[63px] lg:leading-[55px] montserrat-bold"
+                    class="text-[20px] mx-10 leading-[24px] sm:text-[45px] sm:leading-[40px] md:leading-[30px] md:leading-[40px] lg:text-[63px] lg:leading-[55px] 2xl:text-[110px] 2xl:leading-[120px] montserrat-bold"
                 >
                     <span class="text-[#F48857]"
                         >Affordable Advertising Solutions</span
@@ -163,9 +184,7 @@
                 onClick: function () {},
             }).showToast();
         </script>
-        @endif
-
-        @if (session('error'))
+        @endif @if (session('error'))
         <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
         <script>
             Toastify({
@@ -629,7 +648,7 @@
                     >
                         <div class="order-1 w-5/12"></div>
                         <div
-                            class="z-20 lg:ml-1 2xl:mr-[110px] flex items-center order-1 bg-white w-10 h-10 rounded-full"
+                            class="z-20 lg:ml-1 2xl:mr-[107px] flex items-center order-1 bg-white w-10 h-10 rounded-full"
                         >
                             <h1 class="mx-auto ont-semibold text-lg text-white">
                                 <div
@@ -737,7 +756,7 @@
                     >
                         <div class="order-1 w-5/12"></div>
                         <div
-                            class="z-20 lg:ml-1 2xl:mr-[110px] flex items-center order-1 bg-white w-10 h-10 rounded-full"
+                            class="z-20 lg:ml-1 2xl:mr-[107px] flex items-center order-1 bg-white w-10 h-10 rounded-full"
                         >
                             <h1 class="mx-auto ont-semibold text-lg text-white">
                                 <div
@@ -840,7 +859,7 @@
                     </div>
                 </div> -->
                 </div>
-                <div class="flex flex-col w-1/2 px-24 mt-4">
+                <div class="flex flex-col w-1/2 pr-48 pl-8 mt-4">
                     <div
                         class="pt-2 text-center text-[24px] leading-[30px] montserrat-regular px-12"
                     >
@@ -1020,8 +1039,10 @@
             <div class="px-20 bg-[#F0F0F0] montserrat-medium text-xs">
                 <div class="flex flex-row justify-between">
                     <div class="pb-16">
-                        SharePadi is created by BLOOM DIGITAL MEDIA LTD.  2024.
-                        All Rights Reserved
+                        Developed by
+                        <a href="https://bloomdigitmedia.com" target="_blank">
+                            BLOOM DIGITAL MEDIA LTD.</a
+                        >  2024. All Rights Reserved
                     </div>
                     <div>
                         <div class="flex justify-end w-20">
@@ -1156,6 +1177,13 @@
                 dropdown10.classList.toggle("hidden");
             }
 
+            function toggleDropdown20() {
+                let dropdown20 = document.querySelector(
+                    "#dropdownButton20 #dropdown20"
+                );
+                dropdown20.classList.toggle("hidden");
+            }
+
             // Add event listener to hide dropdown when clicking outside
             document.addEventListener("click", function (event) {
                 // Check if the click event target is not inside the dropdown
@@ -1204,7 +1232,86 @@
                     );
                     dropdown10.classList.add("hidden");
                 }
+                if (
+                    !event.target.closest("#dropdown20") &&
+                    !event.target.closest("#dropdownButton20")
+                ) {
+                    let dropdown20 = document.querySelector(
+                        "#dropdownButton20 #dropdown20"
+                    );
+                    dropdown20.classList.add("hidden");
+                }
             });
+
+            function closeDropdown9() {
+                let dropdown9 = document.querySelector("#dropdown9");
+                dropdown9.classList.add("hidden");
+                document.removeEventListener(
+                    "click",
+                    closeDropdown9OnClickOutside
+                );
+            }
+            document
+                .getElementById("closeButton9")
+                .addEventListener("click", function () {
+                    closeDropdown9();
+                });
+
+            function closeDropdown7() {
+                let dropdown7 = document.querySelector("#dropdown7");
+                dropdown7.classList.add("hidden");
+                document.removeEventListener(
+                    "click",
+                    closeDropdown7OnClickOutside
+                );
+            }
+            document
+                .getElementById("closeButton7")
+                .addEventListener("click", function () {
+                    closeDropdown7();
+                });
+
+            function closeDropdown10() {
+                let dropdown10 = document.querySelector("#dropdown10");
+                dropdown10.classList.add("hidden");
+                document.removeEventListener(
+                    "click",
+                    closeDropdown10OnClickOutside
+                );
+            }
+            document
+                .getElementById("closeButton10")
+                .addEventListener("click", function () {
+                    closeDropdown10();
+                });
+
+            function closeDropdown5() {
+                let dropdown5 = document.querySelector("#dropdown5");
+                dropdown5.classList.add("hidden");
+                document.removeEventListener(
+                    "click",
+                    closeDropdown5OnClickOutside
+                );
+            }
+            document
+                .getElementById("closeButton5")
+                .addEventListener("click", function () {
+                    closeDropdown5();
+                });
+
+            function closeDropdown20() {
+                let dropdown20 = document.querySelector("#dropdown20");
+                dropdown20.classList.add("hidden");
+                document.removeEventListener(
+                    "click",
+                    closeDropdown20OnClickOutside
+                );
+            }
+            document
+                .getElementById("closeButton20")
+                .addEventListener("click", function () {
+                    closeDropdown20();
+                });
         </script>
     </body>
 </html>
