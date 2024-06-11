@@ -42,11 +42,11 @@
                     </svg>
                     <h3 class="montserrat-medium my-3 font-semibold text-xl lg:text-2xl">Custom Task</h3>
                     <p class="montserrat-thin italic font-light text-ellipsis">
-                        Pay people to 
-                        perform any social task you 
+                        Pay people to
+                        perform any social task you
                         want.
-                        Just input what you 
-                        want and let our users 
+                        Just input what you
+                        want and let our users
                         do the magic.
                     </p>
                 </li>
@@ -407,7 +407,7 @@
 
     document.getElementById('nextCustomTask').addEventListener('click', () => {
         load = validateForm('tabContent1');
-        if(load){
+        if (load) {
             handleNextButton('custom_task', 'formCustomTask');
         } else {
             alert('Fill all required field')
@@ -416,7 +416,7 @@
 
     document.getElementById('nextWhatsAppStatusPost').addEventListener('click', () => {
         load = validateForm('tabContent2');
-        if(load){
+        if (load) {
             handleNextButton('whatsapp_status_post', 'formWhatsAppStatusPost');
         } else {
             alert('Fill all required field')
@@ -425,7 +425,7 @@
 
     document.getElementById('nextWhatsAppAddUp').addEventListener('click', () => {
         load = validateForm('tabContent3');
-        if(load){
+        if (load) {
             handleNextButton('whatsapp_add_up', 'formWhatsAppAddUp');
         } else {
             alert('Fill all required field')
