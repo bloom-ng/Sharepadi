@@ -11,10 +11,12 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\ContactController;
+use App\Models\Faq;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('home');
+    $faqs = Faq::all();
+    return view('home')->with(['faqs' => $faqs]);
 })->name('homepage');
 
 
@@ -50,7 +52,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::post('/fund-wallet', [WalletController::class, 'fundWallet']);
     Route::get('/fund-confirm', [WalletController::class, 'confirmFunding']);
 
-    Route::get('/account', function(){
+    Route::get('/account', function () {
         return view('dashboard.user.account');
     });
 
@@ -67,14 +69,14 @@ Route::group(['prefix' => 'admin', 'middleware' => App\Http\Middleware\Admin::cl
 
     Route::get('/create-admins', [AdminController::class, 'create']);
     Route::post('/create-admins', [AdminController::class, 'store'])->name("create.admin");
-    Route::get('/delete-admin/{admin}', [AdminController::class, 'destroy']); 
+    Route::get('/delete-admin/{admin}', [AdminController::class, 'destroy']);
     Route::get('/admins', [AdminController::class, 'index'])->name('admins');
 
     Route::get('/tutorials', [TutorialController::class, 'adminIndex'])->name('admin.tutorials.index');
     Route::get('/create-tutorial', [TutorialController::class, 'create']);
     Route::post('/create-tutorial', [TutorialController::class, 'store']);
     Route::get('/delete-tutorial/{tutorial}', [TutorialController::class, 'destroy']);
-    
+
     Route::get('/settings', [SettingController::class, 'index'])->name('admin.settings.index');
     Route::get('/create-setting', [SettingController::class, 'create']);
     Route::post('/create-setting', [SettingController::class, 'store']);
@@ -89,6 +91,9 @@ Route::group(['prefix' => 'admin', 'middleware' => App\Http\Middleware\Admin::cl
     Route::get('/delete-faq/{faq}', [FaqController::class, 'destroy']);
 
     Route::get('/users', [UserController::class, 'index']);
+
+    Route::get('/contacts', [ContactController::class, 'index'])->name('admin.contacts.index');
+    Route::get('/delete-contact/{contact}', [ContactController::class, 'destroy']);
 
     // Route::get('/wallet', [WalletController::class, 'index']);
     // Route::post('/fund-wallet', [WalletController::class, 'fundWallet']);

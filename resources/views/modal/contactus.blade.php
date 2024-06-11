@@ -2,8 +2,9 @@
     <div class="flex flex-row justify-center fixed inset-0 z-30 pt-6">
         <div class="absolute inset-0 bg-gray-800 bg-opacity-75"></div>
         <div class="flex flex-col items-center hide-scrollbar overflow-auto w-full z-40">
-            <div class="flex flex-col items-center rounded-[34px] h-fit bg-[#F0F0F0] pt-12 pb-4 px-8 md:px-24 lg:px-24">
-                <div class="flex flex-row justify-between gap-24">
+            <div
+                class="flex flex-col items-center rounded-[34px] h-fit w-[90%] md:w-[50%] lg:w-[30%] sm:w-[50%] bg-[#F0F0F0] pt-12 pb-4 px-8 md:px-24 lg:px-24">
+                <div class="flex flex-row justify-between w-full">
                     <h2 class="montserrat-bold text-[19px] xl:text-[32px] mb-8">
                         Contact Us
                     </h2>
@@ -17,7 +18,7 @@
                     {{-- //border-[#FFEEE7] --}}
                     <div
                         class="flex items-center justify-center border border-[#FFEEE7] rounded-full max-w-[419px] w-full mb-8">
-                        <span>
+                        {{-- <span>
                             <svg width="27" height="25" viewBox="0 0 27 25" fill="none"
                                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                 <rect width="27" height="25" fill="url(#pattern0_1695_41)" />
@@ -31,10 +32,10 @@
                                         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAADkElEQVR4nO2dzUtUURiHHzTKoKDaZQV9QIs+doXWqtrVqhCEiqD+hj4kKQiMWhSRhpDVX9B3bvuAaNOHixKpFgWaLdIswQyzojcOvpIJU6Pj3PPOnPeBB2R0vDO/M/fec895zx1wHMdxHMdxHMexSQVQCzQCN4Au4DPwXf2sj10HjgI1+hynQJYAp4BeQKboO31utbfC1FkEtALfphH8ZMP/uAAs9IbIj3qgfwaCn2wfUOeNkJtZ+qmXItsCVHpD/M1coD2D8Me9BVR5I4xRqT0bydh23euSpzVC+OM2p55+fcTwx61LuavZb6AB+lLtorYaCH9izygpFgMjBoKfeLGW1BXzaQOhyyRPkggVOk4jxuxJZQCv1kDYksONJECjgaAlhw0kwE0DQUsOr5EAXQaClhx2kgCfDAQtOfxIAowaCFr+cT1Q9ngDRMYPQZHxk3BkYky+SJ5eJQEsX4gdIQFqDAQtOdxAAlgdjOtOZTAOrVgTYzaRENYmZEZSm5BBywXFiOdJkIU6IR47/A/AAhKlLnL4v4CdJE5LxAY4F/vNWylNvB4h/DtepPuHKi2YzSr8MBwyZ8L2Hcb2hOYMjvnhsOPl6f85MfcVqbezyz/q+XdRW2boYm1E+/nJdjULoVor1nqmObbTpFfdToFUaNFUg5aOdOrM2qgafn6hvzuio5rJDKw5juM4juM4juMEtgKXgFfAcIShZpkhh/U9tAFbSqFpVwH3DQQnRfIusAKjbAYGDIQkGawh2IQxlhtZ9S4ZOaB7uxnuGQhFMvYBRthmIAyJpIkT82UDQUgkL2KA1waCkEi+xABfDAQhkRzCAJK40ZHEjc4PAyFIJMN7j46FCmeJZKg1ik6ngSAkks8xwBUDQUgkwyhpdPYZCEIiuRcDzNP+sCTmEDAfI7QZCEQyNtx209QXLZTyzJdM0a/AMoxx3EAwkpHHMEi4E/kjA+FIkX1o+a7rS4H3BkKSItmrh1vTrNYrRCnDueA1lAjrjd6QQ6ZpWCCyjhJc3fLMQHhSoE9LeZVNOFmdAH4aCFKmsaIyrNqcTRkQaoY6DIQqedqhr7msCGu2DgBvDQQsOXwD7C/39WXhsLQHeGIg8HEfA7tTXMC9Fjgbaa8I2zyjr8FhrJt3WG+iUayvMryt2/DQ82AlsAM4pAVQ7Xqo6Navrx2cEO6gPtatf9OuzzkIbLdc0ew4juM4juM4DsnxGx79oWD887scAAAAAElFTkSuQmCC" />
                                 </defs>
                             </svg>
-                        </span>
+                        </span> --}}
                         <div class="w-full">
                             <input type="name" id="name" name="name" placeholder="Name"
-                                class="w-full p-2 border-none bg-transparent montserrat-light italic text-[14px] active:border-none"
+                                class="w-full p-4 border border-gray-500 rounded-lg bg-transparent montserrat-light italic text-[14px] active:border-none"
                                 required />
                             @error('name')
                                 <div class="text-[#F48857] montserrat-thin italic mb-4"></div>
@@ -44,7 +45,7 @@
 
                     <div
                         class="flex items-center justify-center border border-[#FFEEE7] rounded-full max-w-[419px] w-full mb-8">
-                        <span>
+                        {{-- <span>
                             <svg width="27" height="27" viewBox="0 0 27 27" fill="none"
                                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                 <rect width="27" height="27" fill="url(#pattern0_563_849)" />
@@ -57,10 +58,10 @@
                                         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAAD7ElEQVR4nO2c24tOURjGnxmMs3HMsUFOSSSFFEq5UEYuRPkHxJALpfkX3LoSSeLOjWJQJFJSkpQoppkcyvkwzDiMMV5tvaSpmfnWYe/17q/nV8/d9+213udde+1377X2BgghhBBCCCGEEEIIIYQQQgZmNoD9AC4BaAXQBUCqXF0AHmvMWewNqYw/AaDHgCGSWJkHx4tMxBYAHw0ELsb0CcC2vM3fB+CXgWDFqDJvmvIyfweAXgNBinH15nEmTOO0A5ckdACYHjMBpw2MLCmZTsYyfyqAHwYCkhJWR9nMEcxBA8FISXUgRgLOGQhESqqzMRLwxEAgUlK1x0jAGgA3DAQjJdNtABsQkY0A7hsITIzrEYDtAGqQA0MB7ALwwkCgYkxvATQDqEMBjNLGOgwELgaejh4CMA4JmKSNfzNghBSs7N7oqN4nJadBO/PTgDFSwAO3MwDmF2XuaIffrgBw2YBJkpMua4x5eNcvPheXrGK6Y8AwiaSs+mv0LFaC8S2vavT3rQYMFE89VSNrA8r1YEJvMIZpEC8NGCoV6p2e9cMj3LAG018nrwBY7jgfNuvSnRgvKesd4lqsF+X+jhnMYKs/WeNzHY43WYP8bsDwviWlyyLKrAorv2AqCaBbOzPFcWfFKQNrzOcBLHDo9wQdQF8rPH4wLsF80GlmpMPxVwK4msD4mwDWOvSzTq9lbxzbCcYnuOfa2SGO1cPdAox/oNVZpdTq79s92wsmJNiHnsG25WD8M89BcS+w3WBiBH8LwDqP0/11hLbf67Q4wqH9VQCuRYo9mJijMCtdlzq0PUbN++zR1he9WI53aG+hVnUxCwNTCfi7W8C15Jup/6lkL+rf0niOR2ncnUO8wcTuUN8RWu/Ql0WDjNDsDFtm7OYwGCnotn+EQ59WA7je5xqz3uPxyKsC4gtGClIbgJ2Oa6lbVZVSo23kUWWVPgHi+ejX+iPyYCSRrjgufvTHkkEeljEBGHz5b16Jl0mDkZItgE8ytlGgKhIgqk41d2yJtspUVQJE9UJfBZqoajK8WawqEyAlEhMAJiD5KBSeAemNEE5B6c2QBOI1AExA8lEoPAPSGyGcgtKbIQnEawCYgOSjUHgGpDdCOAWlN0MSKBifPTkU/niQ7bYIJnszhobCe2tmMBeZAPgOwJYYCdjLBMA3AbtjJCB7E4Sfp4Sz+T26pTIKx3gWwDUBRxCRGayG4GJ+R6zPlf3PJgN7bKQE6s1pZ9+/D7fy26EY0PysaMmVRuPv+krCaWczCiJ7oeEwqyP4vnASjazM2gPggt71dRoYiZKzOjXWFo09WqlJCCGEEEIIIYQQQgghhBBUJb8BOAVQRaxuZE0AAAAASUVORK5CYII=" />
                                 </defs>
                             </svg>
-                        </span>
+                        </span> --}}
                         <div class="w-full">
                             <input type="email" id="email" name="email" placeholder="Email Address"
-                                class="w-full p-2 border-none bg-transparent montserrat-light italic text-[14px] active:border-none"
+                                class="w-full p-4 border border-gray-500 rounded-lg bg-transparent montserrat-light italic text-[14px] active:border-none"
                                 required />
                             @error('email')
                                 <div class="text-[#F48857] montserrat-thin italic mb-4"></div>
@@ -86,9 +87,8 @@
                         <div class="w-full">
                             {{-- <label for="Message_to_us" class="block text-sm font-medium text-gray-700">Your message to
                                 us...</label> --}}
-                            <textarea id="Message_to_us" name="Message_to_us" rows="4" placeholder="Your message to us..."
-                                class="w-full p-2 border border-4 border-[#FFEEE7] rounded-3xl bg-transparent montserrat-light italic text-[14px]"
-                                required></textarea>
+                            <textarea id="message" name="message" rows="5" placeholder="Your message to us..."
+                                class="w-full border border-gray-500 rounded-lg p-4 bg-transparent montserrat-light italic text-[14px]" required></textarea>
                             <div class="text-[#F48857] montserrat-thin italic mb-4"></div>
                         </div>
                     </div>

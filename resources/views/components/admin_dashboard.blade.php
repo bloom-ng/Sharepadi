@@ -177,11 +177,17 @@
                 </span>
                 Settings
             </a>
-            
+
             <a href="/admin/faqs"
                 class="flex items-center {{ $page == 'faqs' ? 'active-nav-link' : '' }} opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fa fa-question-circle text-[#F48857] text-5xl mr-2" aria-hidden="true"></i>
                 Faqs
+            </a>
+
+            <a href="/admin/contacts"
+                class="flex items-center {{ $page == 'contacts' ? 'active-nav-link' : '' }} opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+                <i class="fa fa-comments text-[#F48857] text-5xl mr-2" aria-hidden="true"></i>
+                Contact Us
             </a>
         </nav>
         <a href="/admin/logout"
@@ -262,6 +268,12 @@
                     <i class="fa fa-question-circle mr-3"></i>
                     Faqs
                 </a>
+
+                <a href="/admin/contacts"
+                    class="flex items-center {{ $page == 'contacts' ? 'active-nav-link' : '' }} opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                    <i class="fa fa-comments mr-3"></i>
+                    Contact Us
+                </a>
                 <a href="/admin/logout" class="flex items-center opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fas fa-sign-out-alt mr-3"></i>
                     Sign Out
@@ -271,37 +283,17 @@
 
         {{ $slot }}
         <div class="flex-grow"></div>
-        <footer
-            class="relative flex justify-between items-center w-full max-w-screen bg-[#F0F0F0] text-right p-4">
-            <p>SharePadi is developed by <a href="https://bloomdigitmedia.com" class="underline text-black">BLOOM DIGITAL MEDIA LTD.</a> 2024. All Rights Reserved</p>
+        <footer class="relative flex justify-between items-center w-full max-w-screen bg-[#F0F0F0] text-right p-4">
+            <p>SharePadi is developed by <a href="https://bloomdigitmedia.com" class="underline text-black">BLOOM
+                    DIGITAL MEDIA LTD.</a> 2024. All Rights Reserved</p>
             <div class="flex">
-                <a
-                                href="https://www.instagram.com/bloom_digitalmedia?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
-                                target="_blank"
-                                ><img
-                                    src="/images/Instagram2.svg"
-                                    alt="Instagram Link"
-                            /></a>
-                            <a
-                                href="https://x.com/bloomdigitmedia?s=20"
-                                target="_blank"
-                                ><img
-                                    src="/images/TwitterX.svg"
-                                    alt="X Link" /></a
-                            ><a
-                                href="https://www.facebook.com/bloomdigitmedia/"
-                                target="_blank"
-                                ><img
-                                    src="/images/Facebook2.png"
-                                    alt="Facebook Link"
-                            /></a>
-                            <a
-                                href="https://www.linkedin.com/company/bloom-digital-media-nigeria/"
-                                target="_blank"
-                                ><img
-                                    src="/images/LinkedIn2.png"
-                                    alt="LinkedIn Link"
-                            /></a>
+                <a href="https://www.instagram.com/bloom_digitalmedia?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                    target="_blank"><img src="/images/Instagram2.svg" alt="Instagram Link" /></a>
+                <a href="https://x.com/bloomdigitmedia?s=20" target="_blank"><img src="/images/TwitterX.svg"
+                        alt="X Link" /></a><a href="https://www.facebook.com/bloomdigitmedia/" target="_blank"><img
+                        src="/images/Facebook2.png" alt="Facebook Link" /></a>
+                <a href="https://www.linkedin.com/company/bloom-digital-media-nigeria/" target="_blank"><img
+                        src="/images/LinkedIn2.png" alt="LinkedIn Link" /></a>
             </div>
         </footer>
     </div>

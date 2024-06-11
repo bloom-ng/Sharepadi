@@ -110,7 +110,7 @@
 
     <div class="flex items-center justify-center w-screen h-screen bg-[#F0F0F0]">
         <div
-            class="flex flex-col items-center justify-center px-8 bg-white lg:px-28 shadow rounded-lg py-8 border border-[#FFEEE7] border-[22.2px]">
+            class="flex flex-col items-center justify-center px-8 bg-white lg:px-28 shadow rounded-lg py-8 border border-[#FFEEE7] border-[2px]">
             <h2 class="montserrat-bold text-[22px] md:text-[32px] mb-8">Login to Your Account</h2>
             <form method="POST" action="{{ route('admin.login') }}" class="w-full flex flex-col items-center">
                 @csrf

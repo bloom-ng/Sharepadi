@@ -7,6 +7,13 @@ use App\Models\Contact;
 
 class ContactController extends Controller
 {
+    public function index()
+    {
+        $contacts = Contact::paginate();
+
+        return view('dashboard.admin.contacts.index')->with('contacts', $contacts);
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -17,6 +24,12 @@ class ContactController extends Controller
 
         Contact::create($request->all());
 
-        return redirect()->route('homepage');
+        return redirect()->route('homepage')->with('success', 'Message successfully sent');
+    }
+
+    public function destroy(CONTACT $contact)
+    {
+        $contact->delete();
+        return redirect()->route('admin.contacts.index')->with('success', 'Contact deleted successfully!');
     }
 }

@@ -39,45 +39,46 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
 </head>
-@if (session('success'))
-    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    <script>
-        Toastify({
-            text: "{{ session('success') }}",
-            duration: 3000,
-            close: true,
-            gravity: "top",
-            position: "right",
-            backgroundColor: "green",
-            stopOnFocus: true,
-            ariaLive: "polite",
-            escapeMarkup: false,
-            onClick: function() {},
-        }).showToast();
-    </script>
-@endif
-@if (session('error'))
-    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    <script>
-        Toastify({
-            text: "{{ session('error') }}",
-            duration: 3000,
-            close: true,
-            newWindow: true,
-            gravity: "top",
-            position: "right",
-            stopOnFocus: true,
-            ariaLive: "polite",
-            style: {
-                background: "red",
-            },
-            onClick: function() {},
-        }).showToast();
-    </script>
-@endif
 
 
 <body class="relative">
+    @if (session('success'))
+        <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+        <script>
+            Toastify({
+                text: "{{ session('success') }}",
+                duration: 3000,
+                close: true,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "green",
+                stopOnFocus: true,
+                ariaLive: "polite",
+                escapeMarkup: false,
+                onClick: function() {},
+            }).showToast();
+        </script>
+    @endif
+    @if (session('error'))
+        <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+        <script>
+            Toastify({
+                text: "{{ session('error') }}",
+                duration: 3000,
+                close: true,
+                newWindow: true,
+                gravity: "top",
+                position: "right",
+                stopOnFocus: true,
+                ariaLive: "polite",
+                style: {
+                    background: "red",
+                },
+                onClick: function() {},
+            }).showToast();
+        </script>
+    @endif
+
     <div class="hidden md:block">
         <div class="bg-white text-lg text-black flex flex-row justify-between gap-12 py-6 px-20">
             <div>
@@ -151,9 +152,9 @@
     <div class="relative bg-cover bg-center h-[625px] md:h-screen"
         style="background-image: url('/images/texting-friends-1.png')">
         <div class="block absolute z-10 inset-0 bg-[#FFFFFF] bg-opacity-90"></div>
-        <div class="absolute text-center z-20 sm:mx-8 md:mx-32 lg:mx-64 mt-36 md:mt-20 text-black">
+        <div class="absolute text-center z-20 sm:mx-8 md:mx-22 lg:mx-36 mt-36 md:mt-20 text-black">
             <h1
-                class="text-[20px] mx-10 leading-[24px] sm:text-[45px] sm:leading-[40px] md:leading-[30px] md:leading-[40px] lg:text-[63px] lg:leading-[55px] 2xl:text-[110px] 2xl:leading-[120px] montserrat-bold">
+                class="text-[20px] mx-10 leading-[24px] sm:text-[45px] sm:leading-[40px] md:leading-[30px] md:leading-[40px] lg:text-[63px] lg:leading-[55px] 2xl:text-[85px] 2xl:leading-[90px] montserrat-bold">
                 <span class="text-[#F48857]">Affordable Advertising Solutions</span>
                 that Make Your Marketing Campaign Hit That Target.
             </h1>
@@ -642,7 +643,7 @@
                                     background-image: url('/images/female-marketer.png');
                                 ">
                         </div>
-                        <div class="flex flex-col justify-center w-/1 mt-4">
+                        <div class="flex flex-col justify-center items-center mt-4">
                             <div
                                 class="flex flex-col pt-2 text-center text-[24px] w-[85%] md:w-[87%] lg:w-[500px] leading-[30px] montserrat-regular px-12">
                                 <div class="text-[32px] text-[#F48857] pt-4 py-2 montserrat-extra-bold">
@@ -697,94 +698,28 @@
     </div>
 
     <div class="px-8 md:px-20">
-        <div class="pb-6">
-            <div
-                class="px-8 md:px-14 rounded-3xl py-5 md:py-10 bg-[#F0F0F0] flex flex-row gap-8 justify-between relative">
-                <h1 class="z-20 text-[12px] leading-[15px] md:text-[30px] md:leading-[30px] montserrat-bold">
-                    How can SharePadi help my business stand out in a
-                    crowded market?
-                </h1>
-                <img class="z-20 w-8 h-7" src="/images/sort-up.png" alt="" />
-                <!-- <div
-                    class="z-10 left-0 px-8 md:px-14 rounded-br-3xl absolute hidden bg-[#F0F0F0] pt-24 text-[24px] leading-[30px] montserrat-regular"
-                >
-                    Absolutely! SharePadi caters to businesses of all sizes,
-                    offering flexible solutions tailored to your specific needs
-                    and budget. Whether you're a budding startup looking to
-                    establish your presence or a well-established enterprise
-                    seeking to expand your reach, SharePadi provides a scalable
-                    advertising platform that adapts to your growth trajectory.
-                    With customizable campaigns and transparent pricing models,
-                    you can achieve your marketing objectives efficiently,
-                    regardless of your company's size or industry.
-                </div> -->
-            </div>
-        </div>
+        @foreach ($faqs as $faq)
+            <div class="pb-6">
+                <div class="px-8 md:px-14 rounded-3xl py-5 md:py-10 bg-[#F0F0F0] flex flex-col relative"
+                    id="dropdownButton-{{ $faq->id }}">
+                    <div onclick="toggleDropdown({{ $faq->id }})" class="flex gap-8 justify-between flex-row">
+                        <h1 class="z-20 text-[12px] leading-[15px] md:text-[30px] md:leading-[30px] montserrat-bold">
+                            {{ $faq->title }}
+                        </h1>
 
-        <div class="pb-6">
-            <div
-                class="px-8 md:px-14 rounded-3xl py-5 md:py-10 bg-[#F0F0F0] flex flex-row gap-8 justify-between relative">
-                <h1 class="z-20 text-[12px] leading-[15px] md:text-[30px] md:leading-[30px] montserrat-bold">
-                    What measures does SharePadi take to ensure the
-                    authenticity and credibility of social tasks performed
-                    by users?
-                </h1>
-                <img class="z-20 w-8 h-7" src="/images/sort-up.png" alt="" />
-            </div>
-        </div>
+                        <img class="z-20 w-8 h-7 transition-transform duration-300" src="/images/sort-up.png"
+                            alt="Caret" />
+                    </div>
 
-        <div class="pb-6">
-            <div
-                class="px-8 md:px-14 rounded-3xl py-5 md:py-10 bg-[#F0F0F0] flex flex-row gap-8 justify-between relative">
-                <h1 class="z-20 text-[12px] leading-[15px] md:text-[30px] md:leading-[30px] montserrat-bold">
-                    Can SharePadi help me reach specific target demographics
-                    or niche audiences?
-                </h1>
-                <img class="z-20 w-8 h-7" src="/images/sort-up.png" alt="" />
-            </div>
-        </div>
-
-        <div class="pb-6">
-            <div
-                class="px-8 md:px-14 rounded-3xl py-5 md:py-10 bg-[#F0F0F0] flex flex-row gap-8 justify-between relative">
-                <h1 class="z-20 text-[12px] leading-[15px] md:text-[30px] md:leading-[30px] montserrat-bold">
-                    How does SharePadi ensure that my advertising campaigns
-                    deliver tangible results and ROI?
-                </h1>
-                <img class="z-20 w-8 h-7" src="/images/sort-up.png" alt="" />
-            </div>
-        </div>
-
-        <div class="pb-6">
-            <div class="px-8 md:px-14 rounded-3xl py-5 md:py-10 bg-[#F0F0F0] flex flex-col justify-between relative"
-                id="dropdownButton">
-                <div onclick="toggleDropdown()" class="flex gap-8 justify-between flex-row">
-                    <h1 class="z-20 text-[12px] leading-[15px] md:text-[30px] md:leading-[30px] montserrat-bold">
-                        Is SharePadi suitable for businesses of all sizes,
-                        including startups and larger enterprises?
-                    </h1>
-
-                    <img class="z-20 w-8 h-7" src="/images/sort-up.png" alt="" />
-                </div>
-
-                <div class="flex flex-col">
-                    <div id="dropdown"
-                        class="z-10 left-0 px-8 md:px-14 rounded-br-3xl static hidden bg-[#F0F0F0] pt-20 md:pt-16 text-[10px] leading-[13px] md:text-[24px] leading-[30px] md: montserrat-regular">
-                        Absolutely! SharePadi caters to businesses of all
-                        sizes, offering flexible solutions tailored to your
-                        specific needs and budget. Whether you're a budding
-                        startup looking to establish your presence or a
-                        well-established enterprise seeking to expand your
-                        reach, SharePadi provides a scalable advertising
-                        platform that adapts to your growth trajectory. With
-                        customizable campaigns and transparent pricing
-                        models, you can achieve your marketing objectives
-                        efficiently, regardless of your company's size or
-                        industry.
+                    <div class="flex flex-col">
+                        <div id="dropdown-{{ $faq->id }}"
+                            class="z-10 left-0 rounded-br-3xl static hidden bg-[#F0F0F0] text-[10px] leading-[13px] md:text-[24px] md:leading-[30px] montserrat-thin mt-5">
+                            {{ $faq->content }}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endforeach
     </div>
     <div class="pt-20">
         <div class="bg-[#F0F0F0] py-20 px-12 md:px-56">
@@ -863,25 +798,19 @@
         });
     </script>
     <script>
-        function toggleDropdown() {
-            let dropdown = document.querySelector(
-                "#dropdownButton #dropdown"
-            );
-            dropdown.classList.toggle("hidden");
-        } // Add event listener to hide dropdown when clicking outside
-        document.addEventListener("click", function(event) {
-            // Check if the click event target is not inside the dropdown
-            if (
-                !event.target.closest("#dropdown") &&
-                !event.target.closest("#dropdownButton")
-            ) {
-                let dropdown = document.querySelector(
-                    "#dropdownButton #dropdown"
-                );
-                dropdown.classList.add("hidden");
+        function toggleDropdown(faqId) {
+            const dropdown = document.getElementById('dropdown-' + faqId);
+            const img = document.getElementById('dropdownButton-' + faqId).querySelector('img');
+            if (dropdown.classList.contains('hidden')) {
+                dropdown.classList.remove('hidden');
+                img.classList.add('rotate-180'); // Rotate image 180 degrees
+            } else {
+                dropdown.classList.add('hidden');
+                img.classList.remove('rotate-180'); // Remove rotation
             }
-        });
-
+        }
+    </script>
+    <script>
         function toggleDropdown2() {
             let dropdown2 = document.querySelector(
                 "#dropdownButton2 #dropdown2"
