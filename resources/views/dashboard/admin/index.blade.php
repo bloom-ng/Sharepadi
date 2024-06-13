@@ -1,4 +1,4 @@
-<x-admin_dashboard page="dashboard">
+<x-admin-dashboard page="dashboard">
     <div class="w-full overflow-x-hidden border-t flex flex-col">
         <main class="w-full flex-grow py-6 px-6 lg:px-24">
             <h1 class="text-3xl text-black pb-6 font-semibold montserrat-bold">Dashboard</h1>
@@ -40,24 +40,27 @@
                         </svg>
                     </div>
                     <h3 class="font-semibold montserrat-bold text-[20px]">Account Balance</h3>
-                    <h2 class="font-semibold montserrat-bold text-[20px]">₦{{$balance}}</h2>
+                    <h2 class="font-semibold montserrat-bold text-[20px]">₦{{ $balance }}</h2>
                 </div>
 
                 <div class="flex-col flex rounded-lg px-6 py-4 max-w-[400px] w-full border border-[#6683A5] gap-4">
                     <div>
-                        <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                            <rect width="44" height="44" fill="url(#pattern0_563_452)"/>
+                        <svg width="44" height="44" viewBox="0 0 44 44" fill="none"
+                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <rect width="44" height="44" fill="url(#pattern0_563_452)" />
                             <defs>
-                            <pattern id="pattern0_563_452" patternContentUnits="objectBoundingBox" width="1" height="1">
-                            <use xlink:href="#image0_563_452" transform="scale(0.0104167)"/>
-                            </pattern>
-                            <image id="image0_563_452" width="96" height="96" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAAEBklEQVR4nO2cS4hcVRCGT0QjPtCFoPjc6doHLjUrIZgs3NyqK5ONGrJKRgj4QIQGM+mqTuJC4nOlS0X3uhTicxXdZBVXKhqI0Z6qnqCgJ9weQXHsdI/ec+ucvvXBD8MwcM5f/32dqXNvCI7jOI7jOI7jOI7jOE5viYO91yrha8r4izLGf0oYfleGH5XwY2V4djx87CbrOS8VQvjmvxV+loRAhfFwHAyusJ578TRFFMKN7QTwl+DdONh1pbWHHgeAsbl0WXvo3SVo6z2ifsTaQ9HEl6trlOCkEv78H0P4xNrDUhPfOnDVZAgPNoWeFcIGV3dZz3PpOT9YuUEYv5txQ37Cen69QBlP/J/7hfZEQvCtMBxt/SlRhojW5rQgCcFaqwGMh3iPtSktSELwfevrBmUUa2Najs6HthGCTzMwFgvRqdYDUIZXMzAWixDByQQB4FPmxrgQUfVk6wFMqHrA3BgXIqrvaz2A+Mruq4XgN3NznLeaGjW1CilQgq+tDWrmEsavQiqE8B1rg5q5hOHtlAE8bW1QM5dwvZosgPVRtcvaoGaudYKH0/5nlPAPa5OaqZraXODqxpASYfjG2qjmKoKzITXK+IG5Uc5UBO+nD4DgRXOjnKkIX0gfANd7zI1yphrCo8kDmIzq28yNcqZaW7k1dMF0y6K1Wc5MBOdCVwjhR+aGOS8Jw4fdBcDA1oY1MwnhsLsAvEkft54BFXQWgDfpcUsA49Hjd3cWwLRJT7hufdprPpLOt+1fbstiD3Wq0+JvBuBNek3ZhJ8fgDfpNWUTfm4AI7g/g1M/Lm0Tfh5xUO0Uxl/NzfMSN+Hn4U16TNuEn4c36TFtE36BAHrfpJeUTfh5NA1o62uwGmt9hA+ZBdD3Jr100YSfR6+b9NRBE34evW7SUwdN+AUCeL6/AeBz1vXv94r4WHWvdf1DjGHH7PeIl/uV1BjDjpADSvhM7wJgPBxy4dygur5POyWE8Id4fN91ISd0WO/uw5pAGo8j3BtypNkZsPQBMB4JOSMELy1v8eFYKAEhrJThgnXBtDXBeEJ4IJTExhG8UxjfEIaLBR/xF5Xh9Qmv3BFKRY7WtyjBfiV8TwnOKOFP1oWdqWZum3Ns5rpfju+72bp+juM4jpPm2xNcrwrDF9PPIk8/jTz9+VCKbR5dj5c1k7Xq9mY7x8zHP8LTzd+UOl7WxOmROLsYfy9KG0dm1+Nlj3C9uvhCCA+WNl72COGXCxeE8PPSxsse3d7XF6W08bJHt1UQGJc2XvaIX4KsA4BDnd6EOx4ve+L04394eqHHwkG1s7TximDSLIwuU5QkC7EOxyuCuPmGzcHm0e/PG6UI42fN71IciV2P5ziO4ziO4ziO4ziO44TecgkTf9qm/MCf+wAAAABJRU5ErkJggg=="/>
+                                <pattern id="pattern0_563_452" patternContentUnits="objectBoundingBox" width="1"
+                                    height="1">
+                                    <use xlink:href="#image0_563_452" transform="scale(0.0104167)" />
+                                </pattern>
+                                <image id="image0_563_452" width="96" height="96"
+                                    xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAAEBklEQVR4nO2cS4hcVRCGT0QjPtCFoPjc6doHLjUrIZgs3NyqK5ONGrJKRgj4QIQGM+mqTuJC4nOlS0X3uhTicxXdZBVXKhqI0Z6qnqCgJ9weQXHsdI/ec+ucvvXBD8MwcM5f/32dqXNvCI7jOI7jOI7jOI7jOE5viYO91yrha8r4izLGf0oYfleGH5XwY2V4djx87CbrOS8VQvjmvxV+loRAhfFwHAyusJ578TRFFMKN7QTwl+DdONh1pbWHHgeAsbl0WXvo3SVo6z2ifsTaQ9HEl6trlOCkEv78H0P4xNrDUhPfOnDVZAgPNoWeFcIGV3dZz3PpOT9YuUEYv5txQ37Cen69QBlP/J/7hfZEQvCtMBxt/SlRhojW5rQgCcFaqwGMh3iPtSktSELwfevrBmUUa2Najs6HthGCTzMwFgvRqdYDUIZXMzAWixDByQQB4FPmxrgQUfVk6wFMqHrA3BgXIqrvaz2A+Mruq4XgN3NznLeaGjW1CilQgq+tDWrmEsavQiqE8B1rg5q5hOHtlAE8bW1QM5dwvZosgPVRtcvaoGaudYKH0/5nlPAPa5OaqZraXODqxpASYfjG2qjmKoKzITXK+IG5Uc5UBO+nD4DgRXOjnKkIX0gfANd7zI1yphrCo8kDmIzq28yNcqZaW7k1dMF0y6K1Wc5MBOdCVwjhR+aGOS8Jw4fdBcDA1oY1MwnhsLsAvEkft54BFXQWgDfpcUsA49Hjd3cWwLRJT7hufdprPpLOt+1fbstiD3Wq0+JvBuBNek3ZhJ8fgDfpNWUTfm4AI7g/g1M/Lm0Tfh5xUO0Uxl/NzfMSN+Hn4U16TNuEn4c36TFtE36BAHrfpJeUTfh5NA1o62uwGmt9hA+ZBdD3Jr100YSfR6+b9NRBE34evW7SUwdN+AUCeL6/AeBz1vXv94r4WHWvdf1DjGHH7PeIl/uV1BjDjpADSvhM7wJgPBxy4dygur5POyWE8Id4fN91ISd0WO/uw5pAGo8j3BtypNkZsPQBMB4JOSMELy1v8eFYKAEhrJThgnXBtDXBeEJ4IJTExhG8UxjfEIaLBR/xF5Xh9Qmv3BFKRY7WtyjBfiV8TwnOKOFP1oWdqWZum3Ns5rpfju+72bp+juM4jpPm2xNcrwrDF9PPIk8/jTz9+VCKbR5dj5c1k7Xq9mY7x8zHP8LTzd+UOl7WxOmROLsYfy9KG0dm1+Nlj3C9uvhCCA+WNl72COGXCxeE8PPSxsse3d7XF6W08bJHt1UQGJc2XvaIX4KsA4BDnd6EOx4ve+L04394eqHHwkG1s7TximDSLIwuU5QkC7EOxyuCuPmGzcHm0e/PG6UI42fN71IciV2P5ziO4ziO4ziO4ziO44TecgkTf9qm/MCf+wAAAABJRU5ErkJggg==" />
                             </defs>
                         </svg>
 
                     </div>
                     <h3 class="font-semibold montserrat-bold text-[20px]">Total Orders</h3>
-                    <h2 class="font-semibold montserrat-bold text-[20px]">{{$orders}}</h2>
+                    <h2 class="font-semibold montserrat-bold text-[20px]">{{ $orders }}</h2>
                 </div>
 
                 <div class="flex-col flex rounded-lg px-6 py-4 max-w-[400px] w-full border border-[#6683A5] gap-4">
@@ -65,9 +68,9 @@
                         <i class="fa fa-user text-4xl text-[#F48857]" aria-hidden="true"></i>
                     </div>
                     <h3 class="font-semibold montserrat-bold text-[20px]">Total Users</h3>
-                    <h2 class="font-semibold montserrat-bold text-[20px]">{{$users}}</h2>
+                    <h2 class="font-semibold montserrat-bold text-[20px]">{{ $users }}</h2>
                 </div>
             </div>
         </main>
     </div>
-</x-admin_dashboard>
+</x-admin-dashboard>

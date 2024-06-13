@@ -1,4 +1,4 @@
-<x-admin_dashboard page="faqs">
+<x-admin-dashboard page="faqs">
     @if (session('success'))
         <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
         <script>
@@ -46,11 +46,12 @@
                 </thead>
                 <tbody class="pt-12">
                     @foreach ($faqs as $faq)
-                    <tr>
-                        <td class="whitespace-wrap text-left">{{ $faq->title }}</td>
-                        <td class="whitespace-wrap text-left">{{ $faq->content }}</td>
-                        <td class="whitespace-wrap text-left"><a class="text-red-500" href="/admin/delete-faq/{{ $faq->id }}">Delete</a></td>
-                    </tr>
+                        <tr>
+                            <td class="whitespace-wrap text-left">{{ $faq->title }}</td>
+                            <td class="whitespace-wrap text-left">{{ $faq->content }}</td>
+                            <td class="whitespace-wrap text-left"><a class="text-red-500"
+                                    href="/admin/delete-faq/{{ $faq->id }}">Delete</a></td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
@@ -59,4 +60,4 @@
             </div>
         </main>
     </div>
-</x-admin_dashboard>
+</x-admin-dashboard>

@@ -25,6 +25,6 @@ class Dashboard extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.dashboard')->with('currentDate', $this->currentDate);
+        return view('components.dashboard', ['currentDate' => $this->currentDate]);
     }
 }

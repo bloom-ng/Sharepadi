@@ -1,4 +1,4 @@
-<x-admin_dashboard page="admins">
+<x-admin-dashboard page="admins">
     @if (session('success'))
         <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
         <script>
@@ -58,20 +58,21 @@
                             <td class="whitespace-wrap text-left">{{ $admin->phone }}</td>
                             <td class="whitespace-wrap text-left">
                                 @switch($admin->type)
-                                @case('1')
-                                Super Admin
-                                @break
-                                
-                                @case('2')
-                                Admin
-                                @break
-                                
-                                @default
-                                {{ $admin->type }}
+                                    @case('1')
+                                        Super Admin
+                                    @break
+
+                                    @case('2')
+                                        Admin
+                                    @break
+
+                                    @default
+                                        {{ $admin->type }}
                                 @endswitch
                             </td>
-                            <td class="whitespace-wrap text-left"><a class="text-red-500" href="/admin/delete-admin/{{ $admin->id}}">Delete</a></td>
-                            
+                            <td class="whitespace-wrap text-left"><a class="text-red-500"
+                                    href="/admin/delete-admin/{{ $admin->id }}">Delete</a></td>
+
                         </tr>
                     @endforeach
                 </tbody>
@@ -82,4 +83,4 @@
         </main>
     </div>
 
-</x-admin_dashboard>
+</x-admin-dashboard>

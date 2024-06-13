@@ -10,7 +10,7 @@ use Illuminate\View\Component;
 class AdminDashboard extends Component
 {
     public $page;
-    public $currentDate;
+    public $my_date;
 
     /**
      * Create a new component instance.
@@ -18,7 +18,7 @@ class AdminDashboard extends Component
     public function __construct($page)
     {
         $this->page = $page;
-        $this->currentDate = Carbon::now()->format('l, F j, Y');
+        $this->my_date = Carbon::now()->format('l, F j, Y');
     }
 
     /**
@@ -26,6 +26,6 @@ class AdminDashboard extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.admin_dashboard')->with('current', $this->currentDate);
+        return view('components.admin-dashboard', ['my_date' => $this->my_date]);
     }
 }
