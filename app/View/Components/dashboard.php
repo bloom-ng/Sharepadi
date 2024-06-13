@@ -7,15 +7,17 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class dashboard extends Component
+class Dashboard extends Component
 {
     public $page;
+    public $currentDate;
     /**
      * Create a new component instance.
      */
     public function __construct($page)
     {
         $this->page = $page;
+        $this->currentDate = Carbon::now()->format('l, F j, Y');
     }
 
     /**
@@ -23,7 +25,6 @@ class dashboard extends Component
      */
     public function render(): View|Closure|string
     {
-        $currentDate = Carbon::now()->format('l, F j, Y');
-        return view('components.dashboard')->with('currentDate', $currentDate);
+        return view('components.dashboard')->with('currentDate', $this->currentDate);
     }
 }

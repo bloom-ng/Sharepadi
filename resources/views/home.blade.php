@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
 
     <link rel="stylesheet" href="{{ asset('css/font.css') }}" />
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
 
     <!-- Include Poppins Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -38,6 +39,7 @@
     </style>
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
+    <title>SharePadi</title>
 </head>
 
 
