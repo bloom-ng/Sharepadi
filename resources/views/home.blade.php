@@ -392,8 +392,7 @@
             <div>
                 <div class="rounded-lg">
                     <div class="flex flex-row justify-center">
-                        <img class="w-64 md:w-[500px] -mt-2 rounded-xl" src="/images/guitar-girl.png"
-                            alt="" />
+                        <img class="w-64 md:w-[500px] -mt-2 rounded-xl" src="/images/guitar.png" alt="" />
                     </div>
                     <div class="pt-10 text-center px-10">
                         <h1
@@ -561,10 +560,10 @@
                             </div>
                         </h1>
                     </div>
-                    <div class="order-1 rounded-lg shadow-xl w-/1">
+                    <div class="order-1 rounded-lg w-/1">
                         <div class="bg-cover bg-no-repeat bg-center rounded-xl w-[85%] h-[172px] md:w-[87%] md:h-[250px] lg:w-[500px] lg:h-[250px]"
                             style="
-                                    background-image: url('/images/jazz-girl.png');
+                                    background-image: url('/images/guitar.jpg');
                                 ">
                         </div>
                     </div>
