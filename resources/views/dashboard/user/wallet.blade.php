@@ -1,4 +1,4 @@
-<x-dashboard page="wallet">
+<x-user-dashboard page="wallet">
     @if (session('success'))
         <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
         <script>
@@ -73,4 +73,4 @@
 
         </main>
     </div>
-</x-dashboard>
+</x-user-dashboard>

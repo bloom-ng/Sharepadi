@@ -1,4 +1,4 @@
-<x-dashboard page="campaigns">
+<x-user-dashboard page="campaigns">
     @if (session('success'))
         <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
         <script>
@@ -210,4 +210,4 @@
         });
     </script>
 
-</x-dashboard>
+</x-user-dashboard>

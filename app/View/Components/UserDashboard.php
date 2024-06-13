@@ -7,7 +7,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Dashboard extends Component
+class UserDashboard extends Component
 {
     public $page;
     public $my_date;
@@ -25,6 +25,6 @@ class Dashboard extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.dashboard', ['my_date' => $this->my_date]);
+        return view('components.user-dashboard', ['my_date' => $this->my_date]);
     }
 }

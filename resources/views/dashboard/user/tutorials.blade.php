@@ -1,4 +1,4 @@
-<x-dashboard page="tutorials">
+<x-user-dashboard page="tutorials">
     <div class="w-full overflow-x-hidden border-t flex flex-col">
         <main class="w-full flex-grow py-6 px-6 lg:px-24">
             <h1 class="text-3xl text-black pb-6 font-semibold montserrat-bold">Tutorials</h1>
@@ -20,4 +20,4 @@
             </div>
         </main>
     </div>
-</x-dashboard>
+</x-user-dashboard>
