@@ -10,14 +10,14 @@ use Illuminate\View\Component;
 class Dashboard extends Component
 {
     public $page;
-    public $currentDate;
+    public $my_date;
     /**
      * Create a new component instance.
      */
     public function __construct($page)
     {
         $this->page = $page;
-        $this->currentDate = Carbon::now()->format('l, F j, Y');
+        $this->my_date = Carbon::now()->format('l, F j, Y');
     }
 
     /**
@@ -25,6 +25,6 @@ class Dashboard extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.dashboard', ['currentDate' => $this->currentDate]);
+        return view('components.dashboard', ['my_date' => $this->my_date]);
     }
 }

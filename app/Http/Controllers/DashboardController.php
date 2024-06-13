@@ -18,8 +18,8 @@ class DashboardController extends Controller
         $balance = User::where('id', $user_id)->first()->walletBalance();
         $campaigns = Campaign::where('user_id', $user_id)->where('status', Campaign::CAMPAIGN_ACTIVE)->count();
         $orders = Campaign::where('user_id', $user_id)->count();
-        $currentDate = Carbon::now()->format('l, F j, Y');
-        return view('dashboard.user.index')->with(['balance' => $balance, 'campaigns' => $campaigns, 'orders' => $orders, 'currentDate' => $currentDate]);
+        $my_date = Carbon::now()->format('l, F j, Y');
+        return view('dashboard.user.index')->with(['balance' => $balance, 'campaigns' => $campaigns, 'orders' => $orders, 'my_date' => $my_date]);
     }
 
     public function adminIndex()
