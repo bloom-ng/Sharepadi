@@ -163,7 +163,7 @@
 
     <!-- JavaScript to handle modal and tab switching -->
     <script>
-        document.getElementById('campaignButton').addEventListener('click', function() {
+        document.getElementById('addCampaignButton').addEventListener('click', function() {
             document.getElementById('campaignModal').classList.remove('hidden');
         });
 
